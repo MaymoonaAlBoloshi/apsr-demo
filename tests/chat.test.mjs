@@ -43,3 +43,10 @@ test('rights and about conversations retain page context and resolve safe guidan
  }
  store.db.close();
 });
+
+test('sector context and navigation use the published sector evidence',async()=>{
+ const store=openStore(':memory:');let prompt='';
+ const chat=createChat(store,{env,request:async(_url,options)=>{prompt=JSON.parse(options.body).messages[0].content;return response('Explore the electricity chain. [source:sectors]');}});
+ const answer=await chat({...message,page:'/sectors/electricity'});
+ assert.match(prompt,/Current page: \/sectors\/electricity/);assert.match(prompt,/municipalities/);assert.equal(answer.sources[0].path,'/sectors');store.db.close();
+});

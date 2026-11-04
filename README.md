@@ -73,6 +73,8 @@ Initial execution restrictions blocked local HTTP listeners and local Chromium l
 
 The bilingual `/about` and `/rights` pages connect official background and published electricity guidance to practical next steps. Rights topics cover bills, payment difficulty, additional support and unresolved complaints. A preparation checklist helps visitors organise their details before entering the complaint journey. Arabic uses the locally bundled Tajawal font. See [content sources and verification](docs/KNOWLEDGE-CONTENT.md).
 
+The `/sectors` guide explains electricity, water and wastewater oversight, gas transmission and solid waste through selectable stages. About Us includes official photographs, vision and mission, the chairman and board members. See [institutional content sources](docs/INSTITUTIONAL-CONTENT.md).
+
 ## Structure and boundaries
 
 - `src/`: React, TypeScript, bilingual interface and responsive styling.

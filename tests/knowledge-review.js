@@ -30,8 +30,8 @@ async(page)=>{
   await page.getByRole('dialog').getByRole('button',{name:lang==='ar'?'إغلاق':'Close',exact:true}).click();
   await page.locator('.rights-preparation .primary').click();
   if(new URL(page.url()).pathname!=='/complaint')throw Error('Complaint navigation');
-  await page.goto('http://apsr.demo/about');await page.locator('.knowledge-hero .primary').click();
-  if(new URL(page.url()).pathname!=='/rights')throw Error('About to rights navigation');
+  await page.goto('http://apsr.demo/about');await page.locator('.authority-introduction .text-button').click();
+  if(new URL(page.url()).pathname!=='/sectors')throw Error('About to sectors navigation');
   await page.goto('http://apsr.demo/');await page.locator('.knowledge-preview-grid button').first().click();
   if(new URL(page.url()).pathname!=='/about')throw Error('Homepage to about navigation');
   checks.push(lang+' topics, checklist, assistant and navigation');

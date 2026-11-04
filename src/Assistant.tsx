@@ -1,8 +1,7 @@
 import {useEffect,useRef,useState} from 'react';
-import {MessageSquare,X,Send,BookOpen,RotateCcw,ArrowUpLeft,ArrowUpRight,Sparkles} from 'lucide-react';
+import {MessageSquare,X,Send,BookOpen,RotateCcw,ArrowUpLeft,ArrowUpRight} from 'lucide-react';
 import type {Localized} from './model';
 import './assistant.css';
-import AssistantMark from './AssistantMark';
 import {assistantGuidance} from './assistantGuidance';
 type Source={id:string;path:string;label:Localized;version?:number};
 type Message={role:'user'|'assistant';text:string;sources?:Source[]};
@@ -41,10 +40,10 @@ export default function Assistant({open,lang,identity,role,page,onClose,navigate
  }
  if(!open)return null;
  return <aside className="assistant-panel ai-panel" role="dialog" aria-label={t('مساعد الخدمات','Service guide')} onKeyDown={e=>{if(e.key==='Escape')close();}}>
-  <div className="assistant-head"><span className="round-icon"><AssistantMark/></span><div><b>{t('مساعد الخدمات','Service guide')}</b><small>{available===false?t('غير متاح حالياً','Currently unavailable'):t('مساعد ذكي لخدمات الهيئة','Your AI guide to APSR services')}</small></div><div className="chat-header-actions"><button className="icon-button" onClick={clear} title={t('محادثة جديدة','New conversation')} aria-label={t('محادثة جديدة','New conversation')}><RotateCcw size={16}/></button><button className="icon-button" onClick={close} aria-label={t('إغلاق','Close')}><X size={19}/></button></div></div>
-  <div className="chat-context-note"><Sparkles size={13}/>{t('إجابات مستندة إلى محتوى الخدمات المنشور','Answers grounded in published service content')}</div>
+  <div className="assistant-head"><span className="round-icon"><MessageSquare size={21}/></span><div><b>{t('مساعد الخدمات','Service guide')}</b><small>{available===false?t('غير متاح حالياً','Currently unavailable'):t('مساعد ذكي لخدمات الهيئة','Your AI guide to APSR services')}</small></div><div className="chat-header-actions"><button className="icon-button" onClick={clear} title={t('محادثة جديدة','New conversation')} aria-label={t('محادثة جديدة','New conversation')}><RotateCcw size={16}/></button><button className="icon-button" onClick={close} aria-label={t('إغلاق','Close')}><X size={19}/></button></div></div>
+  <div className="chat-context-note"><BookOpen size={13}/>{t('إجابات مستندة إلى محتوى الخدمات المنشور','Answers grounded in published service content')}</div>
   <div className="assistant-body" role="log" aria-live="polite" aria-relevant="additions text" aria-label={t('المحادثة','Conversation')}>
-   {!messages.length&&<><div className="chat-bubble chat-welcome"><span className="chat-welcome-icon"><AssistantMark/></span><h3>{guidance.title}</h3><p>{guidance.description}</p></div><div className="chat-suggestions">{guidance.questions.map(q=><button className="suggestion" key={q} disabled={loading||available===false} onClick={()=>send(q)}>{q}<Arrow size={15}/></button>)}</div><button className="chat-direct-action" onClick={()=>{navigate(guidance.action.path);close();}}>{guidance.action.label}<Arrow size={16}/></button></>}
+   {!messages.length&&<><div className="chat-bubble chat-welcome"><span className="chat-welcome-icon"><MessageSquare size={21}/></span><h3>{guidance.title}</h3><p>{guidance.description}</p></div><div className="chat-suggestions">{guidance.questions.map(q=><button className="suggestion" key={q} disabled={loading||available===false} onClick={()=>send(q)}>{q}<Arrow size={15}/></button>)}</div><button className="chat-direct-action" onClick={()=>{navigate(guidance.action.path);close();}}>{guidance.action.label}<Arrow size={16}/></button></>}
    {messages.map((m,i)=><div className={`chat-turn ${m.role}`} key={i}><small className="chat-speaker">{m.role==='user'?t('أنت','You'):t('مساعد الخدمات','Service guide')}</small><div className="chat-bubble"><p dir="auto">{m.text}</p>{!!m.sources?.length&&<div className="chat-sources">{m.sources.map(s=><button key={s.id} className="source" onClick={()=>{if(s.path.startsWith('https://apsr.om/'))window.open(s.path,'_blank','noopener,noreferrer');else navigate(s.path);close();}}><BookOpen size={13}/>{s.label[lang]}{s.version?` · v${s.version}`:''}<Arrow size={12}/></button>)}</div>}</div></div>)}
    {loading&&<div className="chat-thinking" role="status"><span><i/><i/><i/></span>{t('أراجع معلومات الخدمة...','Checking the service information...')}</div>}
    {error&&<div className="chat-error" role="alert"><p>{errors[error]?.[lang]||errors.chat_provider_error[lang]}</p><div><button onClick={()=>send(messages.at(-1)?.text||'',true)} disabled={loading}><RotateCcw size={14}/>{t('إعادة المحاولة','Retry')}</button><button onClick={()=>{navigate('/services');close();}}>{t('دليل الخدمات','Service catalogue')}<Arrow size={14}/></button></div></div>}

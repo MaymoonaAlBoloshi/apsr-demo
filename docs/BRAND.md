@@ -9,7 +9,7 @@ Updated 4 November 2026 using the user-supplied eight-page `BrandingGuideline.pd
 - Page 6 specifies `#0096B3`, `#B3DBE5`, `#D9F0FB`, `#3AACC1`, `#ECF3F7` and `#75C7D6`. These are centralised in `src/brand.css` and used for accents, surfaces, borders and illustration details.
 - Page 7 specifies Tajawal. The demo bundles Regular, Medium, Bold and ExtraBold locally for both Arabic and English. Its licence is in `public/fonts/Tajawal-OFL.txt`. This supersedes the earlier Changa selection.
 - Pages 3 to 5 show the approved stacked and horizontal logos and prohibit arbitrary recolouring. The demo retains the original horizontal asset used by the official website, without filters or blending. It does not redraw or recolour that asset. The guide identifies the stacked mark as the main logo for official websites; the responsive header continues to use the supplied horizontal lockup, so this is not a claim of complete identity compliance.
-- Page 8 shows fine triangular outlines over pale gradients. The decorative homepage geometry now follows that treatment. It is separate from the official logo.
+- Page 8 shows fine triangular outlines over pale gradients. Following user review, the homepage now uses the official reception photograph instead of a reconstructed triangle. The chat button uses a plain message icon.
 - Dark ink, muted text and darker action colours are accessibility choices rather than extra official brand colours. White text on the primary cyan is insufficient for small text, so buttons use `#00677E`, with `#004E62` on hover. Status and error colours retain their functional meaning.
 
 ## Design references
@@ -21,7 +21,7 @@ The homepage now leads from the main service promise to three service entry poin
 ## Motion
 
 - Headline and supporting elements enter with short, staggered fades and small vertical movement.
-- The decorative triangular form moves gently, with a corresponding shadow.
+- The homepage photograph is static. Service rows retain their hover and keyboard-focus transitions.
 - Sections reveal once as they enter the viewport.
 - Service rows, arrows and sector content use short hover or disclosure transitions.
 - `prefers-reduced-motion: reduce` disables the decorative animation and reveals all content immediately. Normal document scrolling is preserved.

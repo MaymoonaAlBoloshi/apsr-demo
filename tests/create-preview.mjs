@@ -5,6 +5,7 @@ const assets={};
 for(const f of readdirSync('dist/assets'))assets['/assets/'+f]={body:readFileSync('dist/assets/'+f,'utf8'),type:f.endsWith('.css')?'text/css':'text/javascript'};
 assets['/']={body:readFileSync('dist/index.html','utf8'),type:'text/html'};
 assets['/brand/apsr-logo.png']={body:readFileSync('public/brand/apsr-logo.png').toString('base64'),type:'image/png',base64:true};
+for(const f of readdirSync('public/about'))assets['/about/'+f]={body:readFileSync('public/about/'+f).toString('base64'),type:f.endsWith('.png')?'image/png':'image/jpeg',base64:true};
 for(const weight of ['Regular','Medium','Bold','ExtraBold'])assets['/fonts/Tajawal-'+weight+'.ttf']={body:readFileSync('public/fonts/Tajawal-'+weight+'.ttf').toString('base64'),type:'font/ttf',base64:true};
 const records={};
 for(const kind of ['case','content','settings','file','draft'])records[kind]=Object.fromEntries(store.all(kind).map(v=>[v.id||'complaint',v]));

@@ -4,7 +4,7 @@ Reviewed 4 November 2026. The demo now has bilingual `/about` and `/rights` page
 
 ## Source decisions
 
-- [About APSR](https://apsr.om/pages/about-us-lb): establishment and governance. The rendered page was checked as well as the text extraction. The extracted chairman attribution differed from the rendered page, so the demo links to current leadership rather than repeating a name or quotation.
+- [About APSR](https://apsr.om/pages/about-us-lb): establishment and governance. The rendered page was checked as well as the text extraction. The extracted chairman attribution differed from the rendered page. The current About page uses names and photographs checked against the rendered Arabic and English pages, and a paraphrased foreword rather than a quotation.
 - [Water](https://apsr.om/pages/water-lb): provider oversight, technical standards, water quality and sustainable supply.
 - [Electricity](https://apsr.om/pages/electricity-lb): verified live sector information and navigation. Current tariff values and company names were not copied into this change.
 - [Customer Guide 2021](https://apsr.om/downloadsdocs/CustomerGuide2021EN.pdf): published rights guidance, standards and complaint oversight.
@@ -21,3 +21,5 @@ The preparation checklist is local interface state. It does not collect or trans
 `npm test` covers existing complaint behaviour and assistant source handling, including the new About and Rights references. `npm run build` checks TypeScript and creates the production bundle.
 
 `tests/knowledge-review.js` runs against the production preview harness. It checks both languages, 1440, 390 and 320 pixel layouts, Tajawal loading, topic selection, checklist updates, contextual assistant suggestions, navigation and absence of the not-found state. Screenshots are saved under the ignored `evidence/` directory. Browser assistant responses use the existing offline fixture; provider prompting and source mapping are checked separately by the backend tests.
+
+The later [institutional revision](INSTITUTIONAL-CONTENT.md) adds official photographs, the About Us section structure and interactive sector lessons.
