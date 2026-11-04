@@ -18,10 +18,16 @@ async(page)=>{
     if(width!==320&&['/','/about','/sectors/electricity'].includes(path))await page.screenshot({path:'/home/maymona/Documents/apsr/evidence/institutional-'+(path.replaceAll('/','-')||'home')+'-'+lang+'-'+width+'.png',fullPage:true,animations:'disabled'});
    }
    if(path.startsWith('/sectors/')){
-    const buttons=page.locator('.lesson-flow button');
-    for(let i=0;i<await buttons.count();i++){await buttons.nth(i).click();if(await buttons.nth(i).getAttribute('aria-pressed')!=='true')throw Error('Stage selection');if(!(await page.locator('.lesson-explanation>div p').innerText()).trim())throw Error('Empty stage');}
+    const articles=page.locator('.sector-reading-list article');
+    if(await articles.count()!==(path.endsWith('electricity')?4:3))throw Error('Missing sector explanation');
+    for(const article of await articles.all()){if(!(await article.innerText()).trim())throw Error('Empty explanation');}
+    if(path.endsWith('electricity')){
+     if(await page.locator('.electricity-tariffs table').count()!==3)throw Error('Missing tariff category');
+     const values=await page.locator('.electricity-tariffs tbody td').allTextContents();
+     for(const rate of ['14','18','32','22','26','25','12','16','24'])if(!values.some(v=>v.startsWith(rate+' ')))throw Error('Missing tariff '+rate);
+    }
     await page.getByRole('navigation',{name:lang==='ar'?'اختر القطاع':'Choose a sector'}).getByRole('button').first().click();
-    if(await page.locator('.lesson-flow button').first().getAttribute('aria-pressed')!=='true')throw Error('Stage reset');
+    await page.locator('.electricity-tariffs').waitFor();
    }
    results.push(lang+' '+path+' at 1440, 390, 320');
   }

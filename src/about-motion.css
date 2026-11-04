@@ -1,0 +1,56 @@
+.about-page{--about-ease:cubic-bezier(.2,.75,.2,1)}
+.about-page .institutional-heading{padding-top:32px;padding-bottom:40px;max-width:1000px}
+.about-page .institutional-heading h1{font-size:clamp(40px,6vw,76px);line-height:1.2;letter-spacing:-.025em;margin:20px 0}
+.about-page .institutional-heading p{font-size:clamp(17px,2vw,22px)}
+.about-page .about-section-nav{gap:clamp(16px,3vw,42px);padding:0;margin-bottom:44px}
+.about-page .about-section-nav a{position:relative;padding:20px 0;text-decoration:none;transition:color .25s}
+.about-page .about-section-nav a:after{content:'';position:absolute;inset-inline:0;bottom:-1px;height:3px;background:var(--brand-action);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--about-ease)}
+[dir=ltr] .about-page .about-section-nav a:after{transform-origin:left}
+.about-page .about-section-nav a[aria-current],.about-page .about-section-nav a:hover{color:var(--brand-ink)}
+.about-page .about-section-nav a[aria-current]:after,.about-page .about-section-nav a:hover:after,.about-page .about-section-nav a:focus-visible:after{transform:scaleX(1)}
+.about-page .authority-introduction{grid-template-columns:1.2fr 1fr;gap:clamp(28px,5vw,72px);padding-bottom:64px}
+.about-page .about-photo{overflow:hidden;clip-path:inset(0 round 4px)}
+.about-page .about-photo img{transition:transform 1.4s var(--about-ease);transform-origin:center}
+.about-page .authority-introduction figcaption{background:var(--brand-sky);position:relative;padding-top:10px;margin:0}
+.about-page .authority-purpose{gap:0;padding:0;background:white;border:1px solid var(--brand-pale)}
+.about-page .authority-purpose article{position:relative;padding:38px;border:0;overflow:hidden;transition:background .45s var(--about-ease),opacity .8s var(--about-ease),transform .8s var(--about-ease)}
+.about-page .authority-purpose article+article{border-inline-start:1px solid var(--brand-pale)}
+.about-page .authority-purpose article:after{content:'';position:absolute;inset-inline:0;bottom:0;height:3px;background:var(--brand-action);transform:scaleX(0);transition:transform .65s var(--about-ease)}
+.about-page .authority-purpose article>span{color:var(--brand-action);font-size:15px}
+.about-page .authority-purpose h2{font-size:34px}
+.about-page .chairman-section{padding:76px 0;gap:64px}
+.about-page .board-section{padding-top:36px}
+.about-page .board-grid{gap:28px}
+.about-page .board-grid article{border-radius:4px;position:relative;transition:opacity .8s var(--about-ease),transform .8s var(--about-ease),box-shadow .4s,border-color .4s}
+.about-page .board-grid img{transition:transform .8s var(--about-ease);transform-origin:center 65%}
+.about-page .board-grid h3{position:relative;background:white;min-height:92px;display:flex;align-items:center}
+.about-page [data-about-reveal].about-pending{opacity:0;transform:translateY(32px);transition:opacity .85s var(--about-ease),transform 1s var(--about-ease)}
+.about-page .about-photo.about-pending{clip-path:inset(0 0 18% 0 round 4px);transition:clip-path 1.2s var(--about-ease),opacity .9s var(--about-ease),transform 1.2s var(--about-ease)}
+.about-page .about-photo.about-pending img{transform:scale(1.07)}
+.about-page [data-about-reveal].about-visible{opacity:1;transform:translateY(0)}
+.about-page .about-photo.about-visible{clip-path:inset(0 round 4px)}
+.about-page .about-photo.about-visible img{transform:scale(1)}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+ .about-page .authority-purpose article:hover{background:var(--brand-light)}
+ .about-page .authority-purpose article:hover:after{transform:scaleX(1)}
+ .about-page .board-grid article:hover{transform:translateY(-7px);box-shadow:0 14px 30px #163c4c12;border-color:var(--brand-medium)}
+ .about-page .board-grid article:hover img{transform:scale(1.035)}
+ .about-page .about-photo:hover img{transform:scale(1.025)}
+}
+@media(max-width:760px){
+ .about-page .institutional-heading{padding:24px 0 28px}
+ .about-page .about-section-nav{display:grid;grid-template-columns:1fr 1fr;gap:0 20px;margin-bottom:28px}
+ .about-page .about-section-nav a{padding:14px 0;font-size:14px}
+ .about-page .authority-introduction{grid-template-columns:1fr;gap:24px;padding-bottom:32px}
+ .about-page .authority-purpose article{padding:28px}
+ .about-page .authority-purpose article+article{border-inline-start:0;border-top:1px solid var(--brand-pale)}
+ .about-page .chairman-section{gap:28px;padding:40px 0}
+ .about-page .about-chairman-photo{grid-row:1}
+ .about-page .board-grid h3{min-height:0}
+}
+@media(prefers-reduced-motion:reduce){
+ .about-page [data-about-reveal],.about-page [data-about-reveal].about-pending,.about-page [data-about-reveal].about-visible{opacity:1;transform:none;clip-path:none;transition:none!important}
+ .about-page *, .about-page *:after{animation:none!important;transition:none!important}
+ .about-page .about-photo img{transform:none!important}
+}
+@media print{.about-page [data-about-reveal].about-pending{opacity:1;transform:none;clip-path:none}}

@@ -28,7 +28,7 @@ The attachment URL prefix is `https://apsr.om/conn_app/technadopt/webapi/api/Att
 - [Gas](https://apsr.om/pages/gas-lb): high-pressure transmission, pipeline integrity, pressure control and preparedness. This does not imply a household gas connection service.
 - [Solid waste](https://apsr.om/pages/solid-waste-lb): the Arabic content distinguishes municipal collection from be’ah’s facilities, transfer, treatment and recovery activities. No licence-issuance outcome or completion date is inferred from the discussion of licence preparation.
 
-Each chapter has selectable explanatory stages, a definition, APSR’s role, practical enquiry guidance and a link to its source. Current tariff amounts are linked to on the official page rather than reproduced as a bill calculator. The assistant receives bounded sector summaries and a safe internal source link.
+Each chapter shows its explanations together, followed by a definition, APSR’s role, practical enquiry guidance and its source. The electricity chapter includes generation ownership and procurement, transmission voltages and dispatch, distribution and supply responsibilities, and all residential, non-residential and agriculture/fisheries tariff tables from the official page, checked on 4 November 2026. Residential account categories appear side by side. The page preserves the published bands and figures, explains the source’s unit label, and does not calculate bills or infer eligibility. The assistant receives bounded sector summaries and a safe internal source link.
 
 ## Visual and interaction changes
 
@@ -38,4 +38,4 @@ The service rows retain their background reveal, directional text movement and a
 
 ## Checks
 
-`tests/institutional-review.js` checks both languages at desktop, phone and narrow-phone widths; the seven board images; all sector stages and chapter resets; assistant suggestions; removed decoration; the footer note; and the actual service-row hover transforms. The production build and API/chat tests also pass. Browser checks use the production preview harness, not the deployed Render service.
+`tests/institutional-review.js` checks both languages at desktop, phone and narrow-phone widths; the seven board images; visible sector explanations, electricity tariff categories and figures, and sector navigation; assistant suggestions; removed decoration; the footer note; and the actual service-row hover transforms. The production build and API/chat tests also pass. Browser checks use the production preview harness, not the deployed Render service.
