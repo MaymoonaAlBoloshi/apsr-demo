@@ -8,7 +8,7 @@ const references={
  complaint:{id:'complaint',path:'/complaint',label:{ar:'تقديم شكوى',en:'Submit a complaint'}},
  tracking:{id:'tracking',path:'/my-requests',label:{ar:'متابعة طلباتي',en:'Track my requests'}},
  catalogue:{id:'catalogue',path:'/services',label:{ar:'دليل الخدمات',en:'Service catalogue'}},
- licensing:{id:'licensing',path:'/services/licensing',label:{ar:'التراخيص والاستفسارات',en:'Licensing enquiries'}},
+ licensing:{id:'licensing',path:'/services/licensing',label:{ar:'التراخيص والاستفسارات',en:'Licences and exemptions'}},
  tariffs:{id:'tariffs',path:'/services/tariffs',label:{ar:'معلومات التعرفة',en:'Tariff information'}},
  enquiry:{id:'enquiry',path:'/services/enquiry',label:{ar:'الاستفسارات العامة',en:'General enquiries'}}
 };
@@ -32,7 +32,7 @@ export function createChat(store,{env=process.env,request=fetch,timeoutMs=60000,
    faq:{version:faq.version,title:faq.title,text:Object.fromEntries(Object.entries(faq.published).map(([lang,text])=>[lang,text.replace("This is demonstration guidance, not official eligibility policy.", "").replace("هذه إرشادات توضيحية للعرض وليست شروطاً رسمية.", "").trim()]))},
    complaint:{requirements:settings.requirements,documentRequired:settings.requiredDocument,uploads:'PDF, PNG, JPEG, TXT; maximum 2 MB per file',fields:['sector','service provider','account reference','subject','issue details'],process:['submitted','in review','awaiting documents if requested','resolved','closed'],drafts:'Saved form fields can be resumed from the same account. Attach files when submitting. Staff can request evidence; the consumer responds on the same case. After closure the consumer can rate the experience.'},
    tracking:'Use My requests after signing in to your consumer account. Web and mobile share the same case and reference. Chat cannot view or change cases, documents, profiles, notes, or notifications.',
-   catalogue:'The portal offers a complaint transaction plus case tracking. Licensing, tariffs, publications and enquiries are information pages. Sectors: electricity, water, sanitation, gas transmission and waste management.',
+   catalogue:'The portal offers a demonstration complaint transaction and case tracking. Its service directory contains six individual regulatory service guides: licensing, article-106, change-of-control, asset-disposal, article-13 and appropriate-person. Each is under /services/ and links to an official APSR guide or application entry point. These are not local submission workflows. Tariffs and publications are information pages; enquiries provides APSR email and telephone contact. Sectors: electricity, water, sanitation, gas transmission and waste management.',
    licensing:'Licensing information page only. No confirmed licensing eligibility, fees, approval rules or application transaction is available in this portal.',
    tariffs:'Information page only. Published electricity figures are supplied in sector evidence and displayed at /sectors/electricity. Cite sectors for those figures. Do not invent tariffs, calculate bills or infer entitlement to a refund.',
    enquiry:'Use the general enquiry information page for questions beyond the published service guidance. Chat cannot send an enquiry or contact staff.'

@@ -1,3 +1,4 @@
+import {officialServices} from './officialServices';
 export type Localized={ar:string;en:string};
 export type Actor={id:string;role:string;ar:string;en:string};
 export type Event={id:string;type:string;actor:string;at:string;text:Localized;internal?:boolean;caseId?:string};
@@ -12,7 +13,7 @@ export const statusNames:Record<string,Localized>={submitted:{ar:'تم الاس�
 export const services=[
  {id:'complaint',ar:'تقديم شكوى',en:'Submit a complaint',descAr:'لديك مشكلة مع أحد مزودي الخدمات؟ نحن هنا لمساعدتك.',descEn:'A concern with your service provider? We are here to help.',tagAr:'خدمة رقمية',tagEn:'Digital service',icon:'message'},
  {id:'tracking',ar:'متابعة طلباتي',en:'Track my requests',descAr:'تابع مستجدات طلبك وتواصل مع فريق الهيئة.',descEn:'Follow your request and stay connected with our team.',tagAr:'حسابي',tagEn:'My account',icon:'track'},
- {id:'licensing',ar:'التراخيص والاستفسارات',en:'Licensing enquiries',descAr:'تعرّف على التراخيص والفرص في القطاعات المنظمة.',descEn:'Explore licensing information across regulated sectors.',tagAr:'المستثمرون',tagEn:'Investors',icon:'building'},
+ ...officialServices.map(s=>({id:s.id,ar:s.title.ar,en:s.title.en,descAr:s.summary.ar,descEn:s.summary.en,tagAr:'التراخيص والموافقات',tagEn:'Licences & approvals',icon:'building'})),
  {id:'tariffs',ar:'التعرفة المعتمدة',en:'Permitted tariffs',descAr:'تعرّف على معلومات التعرفة للخدمات المنظمة.',descEn:'Find tariff information for regulated services.',tagAr:'المستهلكون',tagEn:'Consumers',icon:'chart'},
  {id:'publications',ar:'التشريعات والمنشورات',en:'Regulations & publications',descAr:'اطّلع على الأدلة والتشريعات والمنشورات التنظيمية.',descEn:'Explore guidance, regulations and publications.',tagAr:'المعرفة',tagEn:'Resources',icon:'book'},
  {id:'enquiry',ar:'تواصل معنا',en:'General enquiry',descAr:'اعثر على القناة المناسبة لسؤالك أو ملاحظتك.',descEn:'Find the right channel for your question or feedback.',tagAr:'الدعم',tagEn:'Support',icon:'mail'}

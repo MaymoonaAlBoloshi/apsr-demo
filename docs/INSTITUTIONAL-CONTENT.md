@@ -39,3 +39,11 @@ The service rows retain their background reveal, directional text movement and a
 ## Checks
 
 `tests/institutional-review.js` checks both languages at desktop, phone and narrow-phone widths; the seven board images; visible sector explanations, electricity tariff categories and figures, and sector navigation; assistant suggestions; removed decoration; the footer note; and the actual service-row hover transforms. The production build and API/chat tests also pass. Browser checks use the production preview harness, not the deployed Render service.
+
+## Homepage and media update, 4 November 2026
+
+The reception photo now introduces APSR in a dedicated section below the service rows. The opening focuses on service guidance and request tracking.
+
+The official Arabic navigation maps Publications to `announcement-f` and Announcements to `publications-f`, despite the English URL names. The homepage now follows that mapping. The Publications panel summarises the water-disruption item and links to its Arabic PDF (246.3 KB): https://idenediprod.blob.core.windows.net/blb/-zlfutSVrEGY3D9FjEOVUQ. Source: https://apsr.om/pages/announcement-f.
+
+The official pages at `publications-f` and `releases-f` returned no links, and `views-b` returned no blog entries on review. Those categories display explicit empty states with access to news and publications; no articles were invented. A single borderless highlight slides between category buttons, with straight directional arrows. Browser checks covered all five categories in both languages at 1440, 390 and 320 pixels, keyboard selection, reduced motion and the intermediate position of the animated highlight.
