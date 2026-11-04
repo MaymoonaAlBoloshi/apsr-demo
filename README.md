@@ -69,6 +69,10 @@ Browser tests use Playwright and the production build. Install its Chromium brow
 
 Initial execution restrictions blocked local HTTP listeners and local Chromium launch. The full browser journey was checked through the connected browser tool using the same harness. A later permitted development-server launch succeeded on port 5188, and the refreshed branded homepage was checked against that live server. See [verification notes](docs/VERIFICATION.md) for the exact checks and limitations.
 
+## About APSR and consumer rights
+
+The bilingual `/about` and `/rights` pages connect official background and published electricity guidance to practical next steps. Rights topics cover bills, payment difficulty, additional support and unresolved complaints. A preparation checklist helps visitors organise their details before entering the complaint journey. Arabic uses the locally bundled Tajawal font. See [content sources and verification](docs/KNOWLEDGE-CONTENT.md).
+
 ## Structure and boundaries
 
 - `src/`: React, TypeScript, bilingual interface and responsive styling.

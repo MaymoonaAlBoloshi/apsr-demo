@@ -31,3 +31,15 @@ test('service guidance includes verified e-services, task context and natural se
  const answer=await chat({...message,role:'consumer',page:'/services/licensing'});
  assert.match(prompt,/Signed-in role: consumer/);assert.match(prompt,/Current page: \/services\/licensing/);assert.match(prompt,/Request Change Control/);assert.match(prompt,/ask one focused question/);assert.doesNotMatch(prompt,/with a demo consumer account|The demo offers|This is demonstration guidance, not official eligibility policy/);assert.equal(answer.sources[0].path,'https://apsr.om/pages/e-services-lb');store.db.close();
 });
+test('rights and about conversations retain page context and resolve safe guidance links',async()=>{
+ const store=openStore(':memory:');
+ for(const page of ['/rights','/about']){
+  let prompt='';const chat=createChat(store,{env,request:async(_url,options)=>{prompt=JSON.parse(options.body).messages[0].content;return response('Read the consumer guidance. [source:rights] [source:about]');}});
+  const answer=await chat({...message,page});
+  assert.ok(prompt.includes(`Current page: ${page}`));
+  assert.match(prompt,/Contact the electricity provider first/);
+  assert.match(prompt,/Never promise compensation/);
+  assert.deepEqual(answer.sources.map(s=>s.path),['/rights','/about']);
+ }
+ store.db.close();
+});

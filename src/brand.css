@@ -1,0 +1,51 @@
+/* APSR Brand Kit, pages 6 to 8. Dark ink/action colours support UI contrast. */
+@font-face{font-family:Tajawal;src:url('/fonts/Tajawal-Regular.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:Tajawal;src:url('/fonts/Tajawal-Medium.ttf') format('truetype');font-style:normal;font-weight:500;font-display:swap}
+@font-face{font-family:Tajawal;src:url('/fonts/Tajawal-Bold.ttf') format('truetype');font-style:normal;font-weight:600 700;font-display:swap}
+@font-face{font-family:Tajawal;src:url('/fonts/Tajawal-ExtraBold.ttf') format('truetype');font-style:normal;font-weight:800 900;font-display:swap}
+:root{
+ --brand-primary:#0096B3;
+ --brand-pale:#B3DBE5;
+ --brand-light:#D9F0FB;
+ --brand-medium:#3AACC1;
+ --brand-sky:#ECF3F7;
+ --brand-soft:#75C7D6;
+ --brand-ink:#163c4c;
+ --brand-muted:#426675;
+ --brand-action:#00677e;
+ --brand-action-hover:#004e62;
+ --apsr-cyan:var(--brand-primary);
+ --apsr-paper:var(--brand-sky);
+ --apsr-line:var(--brand-pale);
+ --apsr-muted:var(--brand-muted);
+}
+html body,html[lang=ar] body{font-family:Tajawal,Tahoma,Arial,sans-serif}
+button,input,textarea,select{font-family:inherit}
+html[lang=ar] h1,html[lang=ar] h2,html[lang=ar] h3,html[lang=ar] .home-page h1,html[lang=ar] .home-page h2{letter-spacing:0}
+body,.home-page{background:var(--brand-sky)}
+.official-logo,.footer-logo{mix-blend-mode:normal;filter:none;object-fit:contain}
+footer{background:#fff;border-color:var(--brand-pale)}
+.primary,.assistant-launch,.ai-panel .chat-form button{background:var(--brand-action);border-color:var(--brand-action);color:#fff}
+.primary:hover,.assistant-launch:hover{background:var(--brand-action-hover);border-color:var(--brand-action-hover)}
+.secondary{color:var(--brand-action);border-color:var(--brand-pale)}
+.header-product,.language,.section-index,.hero-kicker,.hero-topline{color:var(--brand-muted)}
+.account-avatar,.main-nav>button.active,.chat-context-note,.chat-turn.user .chat-bubble{background:var(--brand-light)}
+.chat-context-note,.chat-speaker,.chat-footnote,.knowledge-breadcrumb{color:var(--brand-muted)}
+.ai-panel .assistant-body,.rights-detail aside,.knowledge-banner{background:var(--brand-sky)}
+.knowledge-hero h1 em,.identity-copy h1 em{color:var(--brand-action)}
+.knowledge-hero{position:relative}
+.authority-seal{background:linear-gradient(145deg,#fff,var(--brand-light));border-color:var(--brand-pale);box-shadow:inset 0 0 0 15px var(--brand-sky)}
+.knowledge-source,.text-button,.ai-panel .source{color:var(--brand-action)}
+.rights-summary,.rights-topics button[aria-pressed=true]{background:var(--brand-action)}
+.rights-summary p,.rights-summary small{color:var(--brand-light)}
+.knowledge-cards p,.knowledge-split p,.knowledge-hero p,.rights-detail p,.knowledge-library>p,.knowledge-preview-grid small{color:var(--brand-muted)}
+.knowledge-breadcrumb,.knowledge-source{font-size:13px}
+.main-nav>button{font-size:13px}
+.knowledge-hero h1{font-weight:700}
+.knowledge-cards h3,.rights-detail h3{font-weight:700}
+.brand-sculpture .art-guide{stroke:var(--brand-pale)}
+.brand-sculpture .sculpture-facets{stroke:var(--brand-soft);stroke-width:1.2}
+@media(max-width:760px){.main-nav>button{font-size:13px}.knowledge-hero h1{font-size:34px}.identity-copy h1{line-height:1.55}}
+.knowledge-hero .rights-summary p,.knowledge-hero .rights-summary small{color:var(--brand-light)}
+/* Keep off-screen table labels inside the table's horizontal scroll region. */
+.table-wrap{position:relative}

@@ -5,6 +5,7 @@ const assets={};
 for(const f of readdirSync('dist/assets'))assets['/assets/'+f]={body:readFileSync('dist/assets/'+f,'utf8'),type:f.endsWith('.css')?'text/css':'text/javascript'};
 assets['/']={body:readFileSync('dist/index.html','utf8'),type:'text/html'};
 assets['/brand/apsr-logo.png']={body:readFileSync('public/brand/apsr-logo.png').toString('base64'),type:'image/png',base64:true};
+for(const weight of ['Regular','Medium','Bold','ExtraBold'])assets['/fonts/Tajawal-'+weight+'.ttf']={body:readFileSync('public/fonts/Tajawal-'+weight+'.ttf').toString('base64'),type:'font/ttf',base64:true};
 const records={};
 for(const kind of ['case','content','settings','file','draft'])records[kind]=Object.fromEntries(store.all(kind).map(v=>[v.id||'complaint',v]));
 records.settings={complaint:store.get('settings','complaint')};
@@ -36,7 +37,7 @@ const browserCode=`async (page) => {
  });
  await page.setViewportSize({width:1440,height:1080});
  await page.goto('http://apsr.demo/');
- await page.getByRole('heading',{name:'حقوقك محفوظة، وخدماتك أقرب.'}).waitFor();
+ await page.locator('main h1').waitFor();
  return {title:await page.title(),overflow:await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth)};
 }`;
 writeFileSync('evidence/preview-harness.js',browserCode);
