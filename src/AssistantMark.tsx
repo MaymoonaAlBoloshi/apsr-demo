@@ -1,0 +1,3 @@
+export default function AssistantMark(){
+ return <span className="assistant-mark" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><circle className="assistant-orbit" cx="24" cy="24" r="21" stroke="currentColor" strokeOpacity=".3" strokeDasharray="2 6"/><path d="M24 8 7 37h34L24 8Z" fill="currentColor" opacity=".16"/><path d="m24 10-15 26h30L24 10Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/><path d="m24 19 2.3 6.2 6.2 2.3-6.2 2.3L24 36l-2.3-6.2-6.2-2.3 6.2-2.3L24 19Z" fill="currentColor"/><path className="assistant-spark" d="m38 5 1.4 3.6L43 10l-3.6 1.4L38 15l-1.4-3.6L33 10l3.6-1.4L38 5Z" fill="currentColor"/></svg></span>;
+}

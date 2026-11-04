@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: apsr-demo
+    runtime: node
+    plan: starter
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    disk:
+      name: apsr-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 22.22.0
+      - key: HOST
+        value: 0.0.0.0
+      - key: DEMO_DB
+        value: /var/data/demo.sqlite
+      - key: SIRAAJ_API_KEY
+        sync: false
+      - key: SIRAAJ_BASE_URL
+        sync: false
+      - key: SIRAAJ_MODEL
+        sync: false

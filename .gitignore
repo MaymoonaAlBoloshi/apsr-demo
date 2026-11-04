@@ -1,0 +1,46 @@
+# Dependencies and generated builds
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+
+# Local credentials (keep the configuration template)
+.env
+.env.*
+!.env.example
+.aws/
+
+# Local database and SQLite sidecar files
+data/
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-*
+
+# Test output, recordings and logs
+test-results/
+playwright-report/
+coverage/
+evidence/
+*.log
+
+# Local agent settings and upload helper
+.agents/
+.codex/
+push-to-github.sh
+
+# Source proposal and office temporary files
+*.docx
+~$*
+.~lock.*#
+
+# Editor and operating system files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db

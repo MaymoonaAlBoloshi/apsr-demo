@@ -1,0 +1,16 @@
+DEMONSTRATION DOCUMENT ONLY
+Not a real utility bill or account.
+
+Consumer: Maryam Al Balushi (fictional persona)
+Provider: Demo Electricity Provider
+Account reference: DEMO-10482
+Billing period: October 2026
+Previous bill: OMR 24.000
+Current bill: OMR 87.000
+Issue: Consumer requests a review of the meter reading and billed amount.
+
+مستند افتراضي للعرض فقط، وليس فاتورة حقيقية.
+المرجع: DEMO-10482
+الفاتورة السابقة: 24 ريالاً عمانياً
+الفاتورة الحالية: 87 ريالاً عمانياً
+المطلوب: مراجعة قراءة العداد والمبلغ المحتسب.
