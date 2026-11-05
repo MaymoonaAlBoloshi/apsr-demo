@@ -67,12 +67,14 @@ test('SQLite data survives closing and reopening the database',async()=>{
 
 test('production static handler serves HTML, deep links, assets and safe failures',async()=>{
  const {serveStatic}=await import('../server/static.mjs');const {mkdtempSync,writeFileSync,rmSync}=await import('node:fs');const {tmpdir}=await import('node:os');const {join}=await import('node:path');
- const root=mkdtempSync(join(tmpdir(),'apsr-static-'));writeFileSync(join(root,'index.html'),'<html>APSR demo</html>');writeFileSync(join(root,'app.js'),'console.log("demo")');
+ const root=mkdtempSync(join(tmpdir(),'apsr-static-'));writeFileSync(join(root,'index.html'),'<html>APSR demo</html>');writeFileSync(join(root,'app.js'),'console.log("demo")');writeFileSync(join(root,'sw.js'),'self.addEventListener("fetch",()=>{})');writeFileSync(join(root,'manifest.webmanifest'),'{"display":"standalone"}');
  const handler=(req,res)=>serveStatic(req,res,root);
  try{
  const home=await invoke(handler,'/');assert.equal(home.status,200);assert.match(home.headers['content-type'],/text\/html/);assert.match(home.text(),/APSR demo/);
  const deep=await invoke(handler,'/cases/APSR-2026-0031');assert.match(deep.headers['content-type'],/text\/html/);
  const js=await invoke(handler,'/app.js');assert.equal(js.headers['content-type'],'text/javascript');
+ const worker=await invoke(handler,'/sw.js');assert.equal(worker.headers['content-type'],'text/javascript');assert.equal(worker.headers['cache-control'],'no-cache');
+ const manifest=await invoke(handler,'/manifest.webmanifest');assert.equal(manifest.headers['content-type'],'application/manifest+json');assert.equal(manifest.headers['cache-control'],'no-cache');assert.equal(home.headers['cache-control'],'no-cache');
  assert.equal((await invoke(handler,'/missing.js')).status,404);
  assert.equal((await invoke(handler,'/%E0%A4%A')).status,400);
  assert.equal((await invoke(handler,'/..%2Fsecret.txt')).status,403);

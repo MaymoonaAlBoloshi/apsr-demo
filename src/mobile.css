@@ -1,0 +1,86 @@
+/* Shared phone layout, including signed-in workspaces. */
+@media(max-width:760px){
+ .app{padding-inline:env(safe-area-inset-left) env(safe-area-inset-right)}
+ .app>header{padding-top:env(safe-area-inset-top)}
+ .app .header-inner{min-height:76px;gap:8px;padding-block:10px}
+ .app .brand{flex:1;min-width:0;max-width:190px}
+ .app .brand .official-logo{width:100%;max-width:174px;height:auto}
+ .app .header-actions{gap:2px;flex-shrink:0}
+ .app .header-actions .icon-button,.app .account-trigger{min-width:44px;min-height:44px;padding:6px}
+ .app .header-actions .language{min-height:44px;font-size:12px;min-width:48px;padding:4px}
+ .app .language>svg{display:none}
+ .app .main-nav.open{inset-inline:0;top:100%;max-height:calc(100dvh - 90px);overflow-y:auto;padding:16px;box-shadow:0 18px 30px #07374e20;border-radius:0}
+ .app .main-nav>button{min-height:48px;font-size:16px;padding:12px 16px;text-align:start}
+ .app .account-panel,.app .notification-panel{top:calc(84px + env(safe-area-inset-top));max-height:calc(100dvh - 100px - env(safe-area-inset-top));overscroll-behavior:contain}
+ .app input:not([type=checkbox]):not([type=radio]),.app select,.app textarea{font-size:16px;min-height:48px;max-width:100%}
+ .app .search-box input{min-width:0}
+ .app .primary,.app .secondary,.app .text-button,.app .help-link{min-height:44px}
+ .app .page-heading h1{font-size:clamp(26px,7vw,32px);line-height:1.5;overflow-wrap:break-word}
+ .app .page-heading p,.app .panel>p,.app .guidance li,.app .signin-demo{font-size:14px;line-height:1.8}
+ .app .panel,.app .report-grid .panel{padding:22px 18px}
+ .app .panel.flush{padding:0}
+ .app .panel-heading{gap:12px;flex-wrap:wrap}
+ .app .panel-heading h2{font-size:21px;line-height:1.5}
+ .app .panel-heading>label{width:100%;min-width:0}
+ .app .filters{gap:12px}
+ .app .filters>label,.app .filters>select,.app .filters>.search-box{width:100%;min-width:0}
+ .app .button-row,.app .form-footer{flex-wrap:wrap;gap:10px}
+ .app .button-row>.primary,.app .button-row>.secondary,.app .form-footer>button{flex:1 1 140px;justify-content:center}
+ .app .stats{gap:12px}
+ .app .stat{padding:18px 14px;min-height:130px}
+ .app .stat>span{font-size:12px;line-height:1.6}
+ .app .stat strong{font-size:30px}
+ .app .stat small{font-size:11px;line-height:1.5}
+ .app .detail-grid{gap:18px}
+ .app .detail-grid b,.app .document>span,.app .message p{overflow-wrap:anywhere}
+ .app .message>div{flex-wrap:wrap;gap:6px}
+ .app .case-progress{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;padding:20px 10px;overflow:visible}
+ .app .case-progress>div{min-width:0;gap:10px;font-size:10px;line-height:1.5}
+ .app .case-progress>div>b{overflow-wrap:anywhere}
+ .app .case-list{overflow:visible}
+ .app .case-list table,.app .case-list tbody{display:block;width:100%}
+ .app .case-list thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+ .app .case-list tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding:22px 18px;border-top:1px solid #dce9ef}
+ .app .case-list td{display:block;min-width:0;padding:0;border:0;font-size:14px;line-height:1.6;overflow-wrap:anywhere}
+ .app .case-list td:first-child{grid-column:1/-1}
+ .app .case-list td:last-child{display:none}
+ .app .case-list td[data-label]:before{content:attr(data-label);display:block;font-size:11px;color:#527585;margin-bottom:4px}
+ .app .case-list .table-link{font-size:17px;line-height:1.5;min-height:44px;text-align:start;width:100%}
+ .app .case-list .table-link small{font-size:12px;margin-top:6px}
+ .app .provider-overview .table-wrap{border:1px solid #dce9ef;border-radius:4px;overscroll-behavior-inline:contain}
+ .app .provider-overview table{min-width:680px}
+ .app .provider-overview th,.app .provider-overview td{padding:14px;font-size:13px}
+ .app .provider-overview .table-link{min-height:44px}
+ .app .provider-overview th:first-child,.app .provider-overview td:first-child{position:sticky;inset-inline-start:0;background:#f8fbfc;min-width:135px;max-width:160px;z-index:1;box-shadow:0 0 0 1px #dce9ef}
+ .app .assistant-launch{width:52px;height:52px;padding:0;justify-content:center;border-radius:0;bottom:calc(16px + env(safe-area-inset-bottom));inset-inline-end:16px}
+ .app .assistant-launch>span{display:none}
+ .app .assistant-launch svg{width:23px;height:23px}
+ .app .assistant-panel{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}
+ .app .assistant-panel .icon-button{min-width:44px;min-height:44px}
+ .app .chat-form textarea{min-height:52px}
+ .app .site-footer{padding-bottom:calc(80px + env(safe-area-inset-bottom))}
+ .app .official-quick-links a{min-height:48px}
+ .app .news-carousel-navigation button{width:44px;height:44px}
+ .app .news-carousel-navigation .news-playback{width:36px;height:44px}
+ .app .news-carousel-toolbar{gap:8px;flex-wrap:wrap}
+ .app .news-carousel-progress{min-width:70px}
+ .app .board-reveal-toggle{min-width:44px;min-height:44px}
+}
+@media(max-width:374px){.app .header-inner{width:calc(100% - 24px)}.app .header-actions{gap:0}.app .header-actions .language{min-width:44px}.app .header-actions .icon-button,.app .account-trigger{min-width:40px}.app .brand .official-logo{max-width:150px}}
+@media(hover:none){.home-page .editorial-service .editorial-service-action{opacity:1;transform:none}.app button,.app a{-webkit-tap-highlight-color:#0096b322}}
+@media(max-width:760px){
+ .app .about-page .about-editorial-hero{grid-template-columns:minmax(0,1fr)}
+ .app .about-page .about-editorial-hero h1{font-size:clamp(36px,10vw,54px);line-height:1.2}
+ .app .board-toggle{min-width:44px;min-height:44px}
+}
+@media(max-width:760px){
+ .app .filters>select{flex:1 1 calc(50% - 6px);width:calc(50% - 6px)}
+ .app .filters .searchbox{flex:1 0 100%;width:100%}
+ .app .filters .searchbox input{min-width:0;width:100%}
+ .app .page-heading .button-row{align-items:stretch}
+ .app .page-heading .button-row>button{height:auto;margin:0}
+}
+@media(max-width:374px){.app .filters>select{flex-basis:100%;width:100%}}
+.app .install-dialog p{font-size:16px;line-height:1.8;color:#527585}
+.app .install-dialog small{font-size:13px;line-height:1.7;color:#527585}
+@media(max-width:760px){.app .main-nav.open{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.app .main-nav>button{margin:0;white-space:normal}}

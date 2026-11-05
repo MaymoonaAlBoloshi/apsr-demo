@@ -1,0 +1,20 @@
+{
+  "id": "/",
+  "name": "APSR Demo | هيئة تنظيم الخدمات العامة",
+  "short_name": "APSR Demo",
+  "description": "A bilingual demonstration of APSR services, guidance and complaint tracking.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f8fbfc",
+  "theme_color": "#07374e",
+  "icons": [
+    {"src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ],
+  "shortcuts": [
+    {"name": "الخدمات | Services", "url": "/services"},
+    {"name": "طلباتي | My requests", "url": "/my-requests"}
+  ]
+}

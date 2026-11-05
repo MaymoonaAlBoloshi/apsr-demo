@@ -9,6 +9,8 @@ assets['/brand/apsr-logo.png']={body:readFileSync('public/brand/apsr-logo.png').
 for(const f of readdirSync('public/about'))assets['/about/'+f]={body:readFileSync('public/about/'+f).toString('base64'),type:f.endsWith('.png')?'image/png':'image/jpeg',base64:true};
 for(const weight of ['Regular','Medium','Bold','ExtraBold'])assets['/fonts/Tajawal-'+weight+'.ttf']={body:readFileSync('public/fonts/Tajawal-'+weight+'.ttf').toString('base64'),type:'font/ttf',base64:true};
 assets['/hero/muscat.jpg']={body:readFileSync('public/hero/muscat.jpg').toString('base64'),type:'image/jpeg',base64:true};
+for(const f of readdirSync('public/icons'))assets['/icons/'+f]={body:readFileSync('public/icons/'+f).toString('base64'),type:'image/png',base64:true};
+for(const f of ['manifest.webmanifest','offline.html'])assets['/'+f]={body:readFileSync('public/'+f,'utf8'),type:f.endsWith('html')?'text/html':'application/manifest+json'};
 const records={};
 for(const kind of ['case','content','settings','file','draft'])records[kind]=Object.fromEntries(store.all(kind).map(v=>[v.id||'complaint',v]));
 records.settings={complaint:store.get('settings','complaint')};
