@@ -1,0 +1,15 @@
+import {useState} from 'react';
+import {Plus,ExternalLink,Linkedin,Quote} from 'lucide-react';
+const statements:Record<string,{en:string;ar:string;url:string}>={
+ 'shatha-al-maskiry.png':{en:'Leadership is no longer about commanding the room with authority, but about opening it with humanity.',ar:'لم تعد القيادة تعني فرض السلطة على الحاضرين، بل فتح المجال لهم بإنسانية.',url:'https://www.linkedin.com/posts/shathamaskiry_leadership-is-no-longer-about-commanding-activity-7374687002757234688-KMuE'},
+ 'adham-al-said.png':{en:'Talking about #Oman and #Economics with Hatim Al Abdissalaam on #DomePodcast',ar:'حديث عن عُمان والاقتصاد مع حاتم العبدالسلام في بودكاست دوم.',url:'https://www.linkedin.com/posts/adhamalsaid_30-economics-hhal-sayyid-dr-adham-bin-activity-7035235212896677889-VhFy'}
+};
+export default function BoardCard({image,name,index,lang}:{image:string;name:string;index:number;lang:'ar'|'en'}){
+ const [pinned,setPinned]=useState(false),[hover,setHover]=useState(false),[focus,setFocus]=useState(false),[dismissed,setDismissed]=useState(false);
+ const open=!dismissed&&(pinned||hover||focus);const statement=statements[image];const t=(ar:string,en:string)=>lang==='ar'?ar:en;const id='board-reveal-'+index;
+ return <article className="board-member" data-about-reveal style={{transitionDelay:`${(index%3)*90}ms`}} onPointerEnter={e=>{if(e.pointerType==='mouse'){setHover(true);}}} onPointerLeave={()=>{setHover(false);if(!focus)setDismissed(false);}} onFocusCapture={e=>{if(!e.currentTarget.contains(e.relatedTarget)){setFocus(true);setDismissed(false);}}} onBlurCapture={e=>{if(!e.currentTarget.contains(e.relatedTarget)){setFocus(false);}}} onKeyDown={e=>{if(e.key==='Escape'){setPinned(false);setDismissed(true);}}}>
+ <div className={`board-portrait ${open?'is-open':''}`}><img src={'/about/'+image} width="805" height="444" loading="lazy" alt={name}/><span className="board-number" aria-hidden="true">{String(index+1).padStart(2,'0')}</span><button className="board-toggle" aria-expanded={open} aria-controls={id} aria-label={`${open?t('إخفاء التفاصيل','Hide details'):t('عرض التفاصيل','Show details')}: ${name}`} onClick={()=>{if(pinned){setPinned(false);setDismissed(true);}else{setPinned(true);setDismissed(false);}}}><Plus size={20} style={{transform:open?'rotate(45deg)':undefined,pointerEvents:'none'}}/></button>
+ <div className="board-reveal" id={id} hidden={!open}>{statement?<><Quote size={24} aria-hidden="true"/><blockquote>{statement[lang]}</blockquote><small>{t('من منشور شخصي على LinkedIn · ترجمة عربية','From a personal LinkedIn post')}</small><a href={statement.url} target="_blank" rel="noopener noreferrer"><Linkedin size={17}/>{t('اقرأ المنشور','Read the post')}<ExternalLink size={13}/></a></>:<><span className="board-reveal-label">APSR</span><p>{t('عضو مجلس الإدارة','Board member')}</p><a href="https://apsr.om/pages/about-us-lb" target="_blank" rel="noopener noreferrer">{t('مجلس الإدارة على موقع الهيئة','Board on the APSR website')}<ExternalLink size={16}/></a></>}</div></div>
+ <h3>{name}</h3>
+ </article>;
+}

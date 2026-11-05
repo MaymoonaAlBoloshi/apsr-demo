@@ -7,7 +7,7 @@ const store=openStore(':memory:');const handler=api(store);
 after(()=>store.db.close());
 async function user(persona){const r=await invoke(handler,'/api/session',{method:'POST',body:{persona}});return r.headers['set-cookie'].split(';')[0];}
 async function request(cookie,path,method='GET',body){const r=await invoke(handler,'/api'+path,{method,headers:{cookie:cookie||''},body});return {status:r.status,data:r.json()};}
-const complaint={sector:'electricity',provider:'Demo Electricity',account:'DEMO-100',subject:'Unexpected bill increase',description:'Please review the unusually high amount on this month’s electricity bill.'};
+const complaint={sector:'electricity',providerId:'nama-supply',category:'billing',provider:'Demo Electricity',account:'DEMO-100',subject:'Unexpected bill increase',description:'Please review the unusually high amount on this month’s electricity bill.'};
 const document={name:'sample-bill.txt',type:'text/plain',data:Buffer.from('FICTIONAL BILL\nAccount DEMO-100\nAmount: OMR 42.000').toString('base64')};
 test('complete complaint lifecycle, access isolation, files, feedback and derived counts',async()=>{
  const consumer=await user('consumer'),other=await user('consumer2'),officer=await user('officer'),manager=await user('manager');

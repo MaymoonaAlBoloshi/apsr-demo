@@ -11,11 +11,27 @@
 .home-media .media-slide{filter:none;transform:translateY(12px);transition:opacity .35s ease,transform .5s cubic-bezier(.22,1,.36,1),visibility .35s}
 .home-media .media-slide.is-active{transform:none}
 .media-resource,.media-empty{margin-block:auto;padding:36px 0;max-width:640px}
-.home-media .media-resource h3,.home-media .media-empty h3{font-size:30px;line-height:1.55;color:var(--brand-ink);margin:18px 0}
-.home-media .media-resource p,.home-media .media-empty p{font-size:16px;color:var(--brand-muted);line-height:1.9}
-.media-resource-type{font-size:13px;color:var(--brand-action)}
-.home-media .media-document{display:flex;align-items:center;justify-content:start;gap:18px;padding:22px 0;color:var(--brand-action);border-top:1px solid var(--brand-pale);font-size:16px}
-.media-document>span{flex:1}.media-document small{display:block;font-size:12px;margin-top:8px;color:var(--brand-muted)}
-.media-related{display:flex;gap:24px;flex-wrap:wrap}.media-related button{display:flex;align-items:center;gap:12px;color:var(--brand-action);padding:12px 0;font-size:15px}.media-related button:hover{text-decoration:underline;text-underline-offset:6px}
+.home-media .media-resource h3,.home-media .media-empty h3{font-size:30px;line-height:1.55;color:#fff;margin:18px 0}
+.home-media .media-resource p,.home-media .media-empty p{font-size:16px;color:#c2dce5;line-height:1.9}
+.media-resource-type{font-size:13px;color:#9edee9}
+.home-media .media-document{display:flex;align-items:center;justify-content:start;gap:18px;padding:22px 0;color:#b0edf5;border-top:1px solid #ffffff30;font-size:16px}
+.media-document>span{flex:1}.media-document small{display:block;font-size:12px;margin-top:8px;color:#c2dce5}
+.media-related{display:flex;gap:24px;flex-wrap:wrap}.media-related button{display:flex;align-items:center;gap:12px;color:#b0edf5;padding:12px 0;font-size:15px}.media-related button:hover{text-decoration:underline;text-underline-offset:6px}
 @media(max-width:760px){.home-media .media-tabs button{min-height:58px}.home-media .media-resource h3,.home-media .media-empty h3{font-size:25px}.home-media .media-resource p,.home-media .media-empty p{font-size:15px}}
 @media(prefers-reduced-motion:reduce){.home-media .media-tabs .media-tab-highlight,.home-media .media-tabs button>svg:last-child,.home-media .media-slide{transition:none}.home-media .media-tabs button[aria-selected=true]>svg:last-child{transform:none!important}}
+
+.home-media .media-stage a:focus-visible,.home-media .media-stage button:focus-visible{outline-color:#a7f4ff}
+
+/* Compact content panel with more space for the news photography. */
+.home-media .media-feature.media-stage{min-height:0}
+.home-media .media-slide{padding:24px 28px}
+.home-media .news-carousel{margin:18px 0 0}
+.home-media .news-carousel-toolbar{margin-top:12px;padding-block:6px}
+.home-media .news-editorial-copy h3{font-size:21px!important;line-height:1.55;margin:12px 0}
+.home-media .news-editorial-copy p{margin-bottom:16px;line-height:1.8}
+.home-media .media-slide .media-visit{padding-top:14px}
+.home-media .media-resource,.home-media .media-empty{padding-block:24px}
+@media(max-width:760px){.home-media .media-slide{padding:22px}.home-media .news-editorial-copy h3{font-size:22px!important}}
+
+.home-page .home-media .home-section-heading p{max-width:none}
+@media(min-width:1101px){.home-page .home-media .home-section-heading p{white-space:nowrap}}

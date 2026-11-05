@@ -1,3 +1,4 @@
+import providers from '../shared/providers.json' with {type:'json'};
 import { randomUUID } from 'node:crypto';
 import { people,sectors } from './store.mjs';
 import { createChat } from './chat.mjs';
@@ -5,7 +6,14 @@ const fail=(status,code)=>{throw Object.assign(new Error(code),{status});};
 const required=(s,min=1)=>typeof s==='string'&&s.trim().length>=min&&s.length<=5000;
 export function api(store,{chat=createChat(store)}={}){
  const sessions=new Map();
- function publicCase(c,actor){const copy=structuredClone(c);if(actor.role==='consumer'){copy.messages=copy.messages.filter(m=>!m.internal);copy.events=copy.events.filter(e=>!e.internal);}return copy;}
+ function canRead(c,actor){return !!c&&(actor.role==='consumer'?c.userId===actor.id:actor.role==='provider'?!!actor.providerId&&c.providerId===actor.providerId:['officer','manager'].includes(actor.role));}
+ function selection(body,optional=false){
+  if(optional&&!body.providerId)return {providerId:null,provider:typeof body.provider==='string'?body.provider.slice(0,200):''};
+  if(body.providerId==='other'){if(!optional&&!required(body.provider,2))fail(400,'provider_required');return {providerId:null,provider:typeof body.provider==='string'?body.provider.trim().slice(0,200):''};}
+  const provider=providers.find(p=>p.id===body.providerId&&p.sectors.includes(body.sector));
+  if(!provider)fail(400,'provider_required');return {providerId:provider.id,provider:provider.name.en};
+ }
+ function publicCase(c,actor){const copy=structuredClone(c);if(['consumer','provider'].includes(actor.role)){copy.messages=copy.messages.filter(m=>!m.internal);copy.events=copy.events.filter(e=>!e.internal);}if(actor.role==='provider')delete copy.userId;return copy;}
  function document(input,actor,caseId){
  if(!input)return null;
  if(!required(input.name)||!['application/pdf','image/png','image/jpeg','text/plain'].includes(input.type)||typeof input.data!=='string')fail(400,'invalid_file');
@@ -22,6 +30,7 @@ export function api(store,{chat=createChat(store)}={}){
  if(!path.startsWith('/api/'))return false;
  const reply=(value,status=200)=>{res.writeHead(status,{'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(value));};
  try{
+ if(path==='/api/providers'&&method==='GET'){reply(providers);return true;}
  if(path==='/api/health'&&method==='GET'){store.get('settings','complaint');reply({ok:true});return true;}
  let body={};
  if(!['GET','HEAD'].includes(method)){
@@ -36,7 +45,7 @@ export function api(store,{chat=createChat(store)}={}){
  if(path==='/api/chat'&&method==='POST'){reply(await chat({...body,role:actor?.role||'public'},req.socket?.remoteAddress||'local'));return true;}
  if(path==='/api/session'&&method==='POST'){
  if(body.persona==='public'){sessions.delete(token);res.setHeader('Set-Cookie','apsr_demo=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0');reply({actor:null});return true;}
- if(!people[body.persona])fail(400,'invalid_persona');
+ if(typeof body.persona!=='string'||!Object.hasOwn(people,body.persona))fail(400,'invalid_persona');
  const t=randomUUID();actor=people[body.persona];sessions.set(t,actor);res.setHeader('Set-Cookie',`apsr_demo=${t}; HttpOnly; SameSite=Strict; Path=/`);reply({actor});return true;
  }
  if(path==='/api/session'&&method==='GET'){reply({actor:actor||null});return true;}
@@ -53,24 +62,35 @@ export function api(store,{chat=createChat(store)}={}){
  }
  if(path==='/api/draft'){
  auth('consumer');if(method==='GET'){reply(store.get('draft',actor.id)||{});return true;}
- if(method==='PUT'){if(body.description?.length>5000||body.subject?.length>200)fail(400,'required');store.put('draft',actor.id,{sector:body.sector,subject:body.subject||'',description:body.description||'',account:body.account||'',provider:body.provider||'',updatedAt:new Date().toISOString()});reply({ok:true});return true;}
+ if(method==='PUT'){if(body.description?.length>5000||body.subject?.length>200)fail(400,'required');store.put('draft',actor.id,{sector:body.sector,subject:body.subject||'',description:body.description||'',account:body.account||'',...selection(body,true),category:['billing','outage','quality','connection','other'].includes(body.category)?body.category:'other',updatedAt:new Date().toISOString()});reply({ok:true});return true;}
  }
- if(path==='/api/cases'&&method==='GET'){auth('consumer','officer','manager');reply(store.all('case').filter(c=>actor.role!=='consumer'||c.userId===actor.id).sort((a,b)=>b.createdAt.localeCompare(a.createdAt)).map(c=>publicCase(c,actor)));return true;}
+ if(path==='/api/cases'&&method==='GET'){auth('consumer','officer','manager','provider');reply(store.all('case').filter(c=>canRead(c,actor)).sort((a,b)=>b.createdAt.localeCompare(a.createdAt)).map(c=>publicCase(c,actor)));return true;}
  if(path==='/api/cases'&&method==='POST'){
- auth('consumer');if(!sectors.includes(body.sector)||!required(body.subject,3)||body.subject.length>200||!required(body.description,10)||!required(body.account)||!required(body.provider))fail(400,'required');
+ auth('consumer');if(!sectors.includes(body.sector)||!required(body.subject,3)||body.subject.length>200||!required(body.description,10)||!required(body.account))fail(400,'required');
+ const routing=selection(body);if(!['billing','outage','quality','connection','other'].includes(body.category))fail(400,'category_required');
  const settings=store.get('settings','complaint');if(settings.requiredDocument&&!body.document)fail(400,'document_required');
  const seq=Math.max(30,...store.all('case').map(c=>Number(c.id.split('-').at(-1))))+1;const id=`APSR-2026-${String(seq).padStart(4,'0')}`; const now=new Date().toISOString();const d=document(body.document,actor,id);
- const c={id,userId:actor.id,sector:body.sector,provider:body.provider,account:body.account,subject:body.subject,description:body.description,status:'submitted',owner:settings.owner,createdAt:now,updatedAt:now,dueAt:new Date(Date.now()+settings.targetDays*86400000).toISOString(),resolvedAt:null,documents:d?[d]:[],messages:[],events:[{id:randomUUID(),actor:actor.id,at:now,type:'submitted',text:{ar:'تم استلام الشكوى',en:'Complaint received'}}],rating:null};
+ const c={id,userId:actor.id,sector:body.sector,...routing,category:body.category,finding:'not_reviewed',account:body.account,subject:body.subject,description:body.description,status:'submitted',owner:settings.owner,createdAt:now,updatedAt:now,dueAt:new Date(Date.now()+settings.targetDays*86400000).toISOString(),resolvedAt:null,documents:d?[d]:[],messages:[],events:[{id:randomUUID(),actor:actor.id,at:now,type:'submitted',text:{ar:'تم استلام الشكوى',en:'Complaint received'}}],rating:null};
  store.put('case',id,c);store.del('draft',actor.id);reply(c,201);return true;
  }
  const match=path.match(/^\/api\/cases\/([^/]+)(?:\/(action|rating))?$/);
  if(match){
- auth('consumer','officer','manager');const c=store.get('case',match[1]);if(!c||(actor.role==='consumer'&&c.userId!==actor.id))fail(404,'not_found');
+ auth('consumer','officer','manager','provider');const c=store.get('case',match[1]);if(!canRead(c,actor))fail(404,'not_found');
  if(!match[2]&&method==='GET'){reply(publicCase(c,actor));return true;}
  if(match[2]==='rating'&&method==='POST'){auth('consumer');if(c.status!=='closed')fail(409,'close_first');if(!Number.isInteger(body.rating)||body.rating<1||body.rating>5)fail(400,'required');c.rating=body.rating;store.put('case',c.id,c);reply(publicCase(c,actor));return true;}
  if(match[2]==='action'&&method==='POST'){
  const now=new Date().toISOString();const type=body.action;const text=body.text?.trim();let eventText;let internal=false;
- if(type==='respond'){
+ if(type==='provider-response'){
+ auth('provider');if(['resolved','closed'].includes(c.status))fail(409,'invalid_transition');if(!required(text))fail(400,'explanation_required');
+ const d=document(body.document,actor,c.id);if(d)c.documents.push(d);
+ eventText={ar:'تم استلام رد مزود الخدمة',en:'Provider response received'};
+ }else if(type==='finding'){
+ auth('officer');if(!['substantiated','not_substantiated','inconclusive'].includes(body.finding)||!required(text))fail(400,'explanation_required');
+ c.finding=body.finding;eventText={ar:'تم تسجيل تقييم الهيئة للمشكلة',en:'APSR assessment recorded'};
+ }else if(type==='route-provider'){
+ auth('officer');if(['resolved','closed'].includes(c.status))fail(409,'invalid_transition');if(!required(text))fail(400,'explanation_required');
+ const routing=selection({providerId:body.providerId,sector:c.sector});Object.assign(c,routing);c.finding='not_reviewed';eventText={ar:'تم تحديث مزود الخدمة المسؤول',en:'Responsible provider updated'};
+ }else if(type==='respond'){
  auth('consumer');if(c.status!=='awaiting_documents')fail(409,'invalid_transition');if(!required(text)||!body.document)fail(400,'document_required');const d=document(body.document,actor,c.id);c.documents.push(d);c.status='in_review';eventText={ar:'تم إرسال المستندات المطلوبة',en:'Requested documents received'};
  }else{
  auth('officer');
@@ -83,15 +103,15 @@ export function api(store,{chat=createChat(store)}={}){
  else fail(400,'invalid_action');
  }
  if(text)c.messages.push({id:randomUUID(),actor:actor.id,at:now,text,internal});
- c.events.push({id:randomUUID(),type,actor:actor.id,at:now,text:eventText,internal});c.updatedAt=now;store.put('case',c.id,c);reply(publicCase(c,actor));return true;
+ c.events.push({id:randomUUID(),type,actor:actor.id,at:now,text:eventText,internal,...(type==='finding'?{finding:c.finding,providerId:c.providerId}:{}),...(type==='route-provider'?{providerId:c.providerId}:{})});c.updatedAt=now;store.put('case',c.id,c);reply(publicCase(c,actor));return true;
  }
  }
  if(path.startsWith('/api/files/')&&method==='GET'){
- auth('consumer','officer','manager');const f=store.get('file',path.split('/').at(-1));const c=f&&store.get('case',f.caseId);if(!c||(actor.role==='consumer'&&c.userId!==actor.id))fail(404,'not_found');
+ auth('consumer','officer','manager','provider');const f=store.get('file',path.split('/').at(-1));const c=f&&store.get('case',f.caseId);if(!canRead(c,actor))fail(404,'not_found');
  res.writeHead(200,{'Content-Type':f.type,'Content-Disposition':`attachment; filename*=UTF-8''${encodeURIComponent(f.name)}`,'X-Content-Type-Options':'nosniff','Cache-Control':'no-store'});res.end(Buffer.from(f.data,'base64'));return true;
  }
  if(path==='/api/notifications'&&method==='GET'){
- auth('consumer','officer','manager');const result=store.all('case').filter(c=>actor.role!=='consumer'||c.userId===actor.id).flatMap(c=>c.events.filter(e=>!e.internal).map(e=>({...e,caseId:c.id}))).sort((a,b)=>b.at.localeCompare(a.at)).slice(0,15);reply(result);return true;
+ auth('consumer','officer','manager','provider');const result=store.all('case').filter(c=>canRead(c,actor)).flatMap(c=>c.events.filter(e=>!e.internal).map(e=>({...e,caseId:c.id}))).sort((a,b)=>b.at.localeCompare(a.at)).slice(0,15);reply(result);return true;
  }
  if(path==='/api/demo/reset'&&method==='POST'){auth('manager');store.reset();reply({ok:true});return true;}
  fail(404,'not_found');

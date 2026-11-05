@@ -1,6 +1,6 @@
 import {readFile} from 'node:fs/promises';
 import {resolve,extname} from 'node:path';
-const mime={'.js':'text/javascript','.css':'text/css','.html':'text/html; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.woff2':'font/woff2','.ttf':'font/ttf','.txt':'text/plain; charset=utf-8','.json':'application/json'};
+const mime={'.js':'text/javascript','.css':'text/css','.html':'text/html; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.webp':'image/webp','.woff2':'font/woff2','.ttf':'font/ttf','.txt':'text/plain; charset=utf-8','.json':'application/json'};
 export async function serveStatic(req,res,root=resolve('dist')){
  let path;try{path=decodeURIComponent(new URL(req.url,'http://localhost').pathname);}catch{res.writeHead(400);res.end('Invalid path');return;}
  const target=resolve(root,path==='/'?'index.html':'.'+path);

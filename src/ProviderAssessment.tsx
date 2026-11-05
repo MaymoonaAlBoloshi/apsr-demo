@@ -1,0 +1,8 @@
+import {useState} from 'react';
+import {findings} from './providers';
+import type {Complaint} from './model';
+import ProviderSelect from './ProviderSelect';
+export default function ProviderAssessment({c,lang,busy,perform}:{c:Complaint;lang:'ar'|'en';busy:boolean;perform:(type:string,extra:Record<string,string>)=>void}){
+ const [finding,setFinding]=useState(c.finding==='not_reviewed'||!c.finding?'':c.finding);const [providerId,setProviderId]=useState(c.providerId||'');const t=(ar:string,en:string)=>lang==='ar'?ar:en;
+ return <div className="provider-assessment"><p>{t('استخدم حقل سبب الإجراء أعلاه لتوثيق التقييم أو تغيير المزود.','Use the action explanation above to document an assessment or provider change.')}</p><label>{t('تقييم المشكلة','Assess the issue')}<select value={finding} onChange={e=>setFinding(e.target.value)}><option value="">{t('اختر نتيجة التقييم','Select assessment')}</option>{Object.entries(findings).filter(([key])=>key!=='not_reviewed').map(([key,label])=><option key={key} value={key}>{label[lang]}</option>)}</select></label><button className="secondary" disabled={busy||!finding} onClick={()=>perform('finding',{finding})}>{t('تسجيل تقييم الهيئة','Record APSR assessment')}</button>{!['resolved','closed'].includes(c.status)&&<><label>{t('المزود المسؤول','Responsible provider')}<ProviderSelect lang={lang} sector={c.sector} value={providerId} onChange={setProviderId} allowOther={false}/></label><button className="secondary" disabled={busy||!providerId||providerId===c.providerId} onClick={()=>perform('route-provider',{providerId})}>{t('توجيه الحالة إلى المزود','Route case to provider')}</button></>}</div>;
+}

@@ -1,0 +1,93 @@
+.home-page .hero-refresh{width:100%;max-width:none;margin:0;padding:0 max(6vw,24px);background:var(--brand-ink);color:white;overflow:hidden}
+.home-page .hero-refresh .identity-hero-grid{grid-template-columns:minmax(0,1.35fr) minmax(320px,.85fr);gap:clamp(40px,6vw,96px);max-width:1280px;margin:auto;padding-block:70px 64px;align-items:center}
+.home-page .hero-refresh .identity-copy{text-align:start;max-width:none;margin:0}
+.hero-refresh .hero-kicker{color:var(--brand-pale);font-size:12px;letter-spacing:.08em;margin-bottom:30px}
+.home-page .hero-refresh .identity-copy h1{font-size:clamp(46px,5.3vw,78px);line-height:1.35;letter-spacing:-.035em;font-weight:500;color:white;margin:0 0 30px;max-width:none}
+.hero-refresh .hero-title-line{display:block;overflow:hidden;padding-block:3px}
+.hero-refresh .hero-title-line>span,.hero-refresh .hero-title-line>em{display:block;animation:hero-line-enter 1.05s cubic-bezier(.22,1,.36,1) both}
+.home-page .hero-refresh .identity-copy h1 em{color:var(--brand-soft);font-style:normal;animation-delay:.13s}
+.home-page .hero-refresh .identity-copy>p{font-size:18px;line-height:1.9;max-width:480px;color:#d0e4e9;margin:0 0 34px}
+.home-page .hero-refresh .identity-actions{justify-content:flex-start;gap:24px;flex-wrap:wrap}
+.home-page .hero-refresh .identity-actions .primary{background:var(--brand-light);color:var(--brand-ink);font-size:16px;padding:18px 22px;gap:30px;border:0;min-height:58px}
+.home-page .hero-refresh .identity-actions .primary:hover{background:white}
+.home-page .hero-refresh .identity-actions .text-button{color:var(--brand-light);font-size:14px;gap:10px}
+.hero-service-desk{background:var(--brand-sky);color:var(--brand-ink);border-radius:4px;padding:30px;min-width:0}
+.hero-desk-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:11px;letter-spacing:.06em;color:var(--brand-muted);margin-bottom:22px}
+.hero-task-tabs{display:flex;flex-direction:column;gap:3px}
+.hero-task-tabs button{display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:start;font-size:19px;padding:16px 14px;margin-inline:-14px;border:0;border-radius:3px;color:var(--brand-muted);transition:background .35s,color .35s}
+.hero-task-tabs button[aria-selected=true]{background:var(--brand-pale);color:var(--brand-ink)}
+.hero-task-tabs button:hover{color:var(--brand-action)}
+.hero-task-tabs button svg{opacity:0;transform:translateX(6px);transition:opacity .3s,transform .4s}
+[dir=ltr] .hero-task-tabs button svg{transform:translateX(-6px)}
+.hero-task-tabs button[aria-selected=true] svg{opacity:1;transform:translateX(0)}
+.hero-task-panel{border-top:1px solid var(--brand-pale);margin-top:24px;padding-top:26px;min-height:220px}
+.hero-task-detail{animation:hero-detail-enter .45s cubic-bezier(.22,1,.36,1)}
+.hero-task-detail h2{font-size:25px;line-height:1.45;margin:0 0 12px;color:var(--brand-ink)}
+.hero-task-detail p{font-size:15px;line-height:1.85;color:var(--brand-muted);margin:0 0 24px}
+.hero-task-detail>button{display:flex;align-items:center;justify-content:space-between;gap:18px;width:100%;text-align:start;color:var(--brand-action);font-size:15px;padding:8px 0}
+.hero-task-detail>button:hover{text-decoration:underline;text-underline-offset:5px}
+.hero-sector-links{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1280px;margin:auto;border-top:1px solid #b3dbe533;padding:25px 0 28px}
+.hero-sector-links>span{font-size:10px;letter-spacing:.05em;color:var(--brand-pale)}
+.hero-sector-links button{display:flex;align-items:center;gap:10px;font-size:14px;color:#d0e4e9;padding:8px 0;transition:color .25s}
+.hero-sector-links button svg{color:var(--brand-soft)}
+.hero-sector-links button:hover{color:white}
+.hero-refresh button:focus-visible{outline-color:var(--brand-primary);outline-offset:5px}
+@keyframes hero-line-enter{from{transform:translateY(115%)}to{transform:translateY(0)}}
+@keyframes hero-detail-enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:1100px){.home-page .hero-refresh .identity-hero-grid{grid-template-columns:minmax(0,1fr) minmax(300px,.9fr);gap:32px}.home-page .hero-refresh .identity-copy h1{font-size:52px}.hero-service-desk{padding:24px}.hero-sector-links{flex-wrap:wrap;gap:8px 24px}.hero-sector-links>span{width:100%;margin-bottom:6px}}
+@media(max-width:760px){.home-page .hero-refresh .identity-hero-grid{grid-template-columns:1fr;gap:36px;padding-block:36px}.home-page .hero-refresh .identity-copy h1{font-size:clamp(38px,8.5vw,56px);line-height:1.35;margin-bottom:22px}.hero-refresh .hero-kicker{font-size:10px;margin-bottom:22px}.home-page .hero-refresh .identity-copy>p{font-size:16px;margin-bottom:26px}.home-page .hero-refresh .identity-actions{gap:18px}.home-page .hero-refresh .identity-actions .primary{font-size:14px;padding:15px 18px;gap:20px}.home-page .hero-refresh .identity-actions .text-button{font-size:13px}.hero-service-desk{padding:24px}.hero-task-tabs button{font-size:17px;padding-block:14px}.hero-task-detail h2{font-size:23px}.hero-task-panel{min-height:210px}.hero-sector-links{justify-content:flex-start;padding-block:20px;gap:8px 22px}.hero-sector-links button{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.hero-refresh .hero-title-line>span,.hero-refresh .hero-title-line>em,.hero-task-detail{animation:none!important;transform:none}.hero-refresh button,.hero-task-tabs button svg{transition:none}}
+
+/* Keep the photograph and its contrast overlay on separate layers. */
+.home-page .hero-refresh{position:relative;isolation:isolate;background:#123d55}
+.hero-muscat-image{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center 48%;pointer-events:none}
+.hero-refresh:before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(8,40,66,.35),rgba(5,46,75,.8));pointer-events:none}
+[dir=ltr] .hero-refresh:before{background:linear-gradient(90deg,rgba(5,46,75,.8),rgba(8,40,66,.35))}
+.home-page .hero-refresh .identity-hero-grid{grid-template-columns:1fr;min-height:640px;padding-block:85px 90px}
+.home-page .hero-refresh .identity-copy{max-width:850px}
+.home-page .hero-refresh .identity-copy h1{font-size:clamp(46px,6vw,84px)}
+.hero-photo-credit{display:flex;flex-wrap:wrap;gap:6px 14px;max-width:1280px;margin:auto;padding:12px 0 18px;color:#dfedf5;font-size:10px;line-height:1.6}
+.hero-photo-credit a{text-decoration:none}.hero-photo-credit a:hover{text-decoration:underline}
+@media(max-width:760px){.home-page .hero-refresh .identity-hero-grid{min-height:510px;padding-block:48px}.home-page .hero-refresh .identity-copy h1{font-size:clamp(38px,8.5vw,56px)}.hero-muscat-image{object-position:58% center}.hero-photo-credit{font-size:9px}}
+/* A standalone mark beside the headline; the inner triangle keeps its offset. */
+.home-page .hero-refresh .identity-hero-grid{grid-template-columns:minmax(0,1.4fr) minmax(240px,.8fr);gap:48px}
+.home-page .hero-refresh .identity-copy h1{font-size:clamp(44px,5vw,72px)}
+.hero-mark{display:grid;place-items:center;min-height:340px;width:100%;direction:ltr;perspective:1000px;align-self:stretch}
+.hero-mark-entry{width:min(100%,350px);animation:hero-mark-arrive 1.3s cubic-bezier(.22,1,.36,1) both}
+.hero-mark-tilt{transform:translate3d(var(--mark-x,0px),var(--mark-y,0px),0) rotateX(var(--mark-pitch,0deg)) rotateY(var(--mark-turn,0deg)) rotateZ(var(--mark-roll,0deg));transition:transform .35s cubic-bezier(.22,1,.36,1);will-change:transform}
+.hero-mark svg{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 24px 20px #042a4440);animation:hero-mark-settle 4.8s ease-in-out 1.3s both}
+@keyframes hero-mark-arrive{from{opacity:0;transform:translateY(28px) scale(.92)}to{opacity:1;transform:none}}
+@keyframes hero-mark-settle{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@media(max-width:760px){.home-page .hero-refresh .identity-hero-grid{grid-template-columns:1fr;gap:22px;padding-block:40px 20px}.home-page .hero-refresh .identity-copy h1{font-size:clamp(38px,8.5vw,56px)}.hero-mark{min-height:190px;max-width:210px;margin-inline:auto}.hero-mark-entry{width:190px}}
+@media(prefers-reduced-motion:reduce){.hero-mark-entry,.hero-mark svg{animation:none}.hero-mark-tilt{transform:none;transition:none;will-change:auto}}
+/* Give the interactive brand mark more presence beside the headline. */
+@media(min-width:761px){.home-page .hero-refresh .identity-hero-grid{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:36px}.hero-mark{min-height:430px}.hero-mark-entry{width:min(100%,480px)}}
+@media(max-width:760px){.hero-mark{max-width:290px;min-height:260px}.hero-mark-entry{width:min(100%,270px)}}
+
+/* Staggered line drawing, with a quiet permanent outline underneath. */
+.hero-mark .hero-mark-lines{opacity:1}
+.hero-mark svg{animation:none;filter:none}
+.hero-mark .hero-mark-tilt{transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.hero-contour-light{stroke-dashoffset:100;animation:hero-contour-draw 8s cubic-bezier(.45,0,.2,1) 1 both}
+.hero-mark.motion-paused .hero-contour-light{animation-play-state:paused}
+@keyframes hero-contour-draw{0%,8%{stroke-dashoffset:100;opacity:0}15%{opacity:1}42%,68%{stroke-dashoffset:0;opacity:1}86%,100%{stroke-dashoffset:0;opacity:0}}
+@media(prefers-reduced-motion:reduce){.hero-mark .hero-mark-lines{display:block;opacity:1}.hero-contour-light{animation:none;stroke-dashoffset:0;opacity:.85}.hero-mark .hero-mark-tilt{transform:none;transition:none}}
+
+/* Hold a static frame between drawing cycles, with no running animation. */
+.hero-mark.motion-resting .hero-contour-light{animation:none;stroke-dashoffset:0;opacity:0}
+.hero-mark .hero-mark-tilt{will-change:auto}
+.hero-mark.motion-paused .hero-mark-tilt{transition:none}
+
+/* The static contour remains visible; the tracing layer ends and begins transparent. */
+@media(prefers-reduced-motion:reduce){.hero-mark.motion-resting .hero-contour-light{opacity:.85}.hero-mark .hero-mark-tilt{transition:none}}
+/* Pointer-driven fan: no ongoing animation or geometry recalculation at rest. */
+.hero-fan-layer{transform-origin:50px 48px;transform:translate(calc(var(--fan-x,0px) * var(--layer-depth)),calc(var(--fan-y,0px) * var(--layer-depth))) rotate(calc(var(--fan-angle,0deg) * var(--layer-depth)));transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.hero-mark.motion-paused .hero-fan-layer{transition:none}
+@media(prefers-reduced-motion:reduce){.hero-fan-layer{transform:none;transition:none}}
+/* One slow transform makes the idle mark legible without animating every contour. */
+.hero-mark-idle{animation:hero-idle-drift 10s ease-in-out infinite;transform-origin:50% 50%}
+@keyframes hero-idle-drift{0%,100%{transform:translateY(5px) rotate(-2deg)}50%{transform:translateY(-7px) rotate(2deg)}}
+.hero-mark.motion-paused .hero-mark-idle,.hero-mark.is-interacting .hero-mark-idle{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.hero-mark-idle{animation:none;transform:none}}
+.hero-mark-scroll{transform:rotate(var(--mark-scroll,0deg));transform-origin:50% 50%;transition:transform .15s ease-out}
+@media(prefers-reduced-motion:reduce){.hero-mark-scroll{transform:none;transition:none}}

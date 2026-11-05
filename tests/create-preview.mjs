@@ -1,5 +1,6 @@
 import {readFileSync,writeFileSync,readdirSync} from 'node:fs';
 import {openStore,people,sectors} from '../server/store.mjs';
+const providers=JSON.parse(readFileSync('shared/providers.json','utf8'));
 const store=openStore(':memory:');
 const assets={};
 for(const f of readdirSync('dist/assets'))assets['/assets/'+f]={body:readFileSync('dist/assets/'+f,'utf8'),type:f.endsWith('.css')?'text/css':'text/javascript'};
@@ -7,6 +8,7 @@ assets['/']={body:readFileSync('dist/index.html','utf8'),type:'text/html'};
 assets['/brand/apsr-logo.png']={body:readFileSync('public/brand/apsr-logo.png').toString('base64'),type:'image/png',base64:true};
 for(const f of readdirSync('public/about'))assets['/about/'+f]={body:readFileSync('public/about/'+f).toString('base64'),type:f.endsWith('.png')?'image/png':'image/jpeg',base64:true};
 for(const weight of ['Regular','Medium','Bold','ExtraBold'])assets['/fonts/Tajawal-'+weight+'.ttf']={body:readFileSync('public/fonts/Tajawal-'+weight+'.ttf').toString('base64'),type:'font/ttf',base64:true};
+assets['/hero/muscat.jpg']={body:readFileSync('public/hero/muscat.jpg').toString('base64'),type:'image/jpeg',base64:true};
 const records={};
 for(const kind of ['case','content','settings','file','draft'])records[kind]=Object.fromEntries(store.all(kind).map(v=>[v.id||'complaint',v]));
 records.settings={complaint:store.get('settings','complaint')};
@@ -16,7 +18,7 @@ const browserCode=`async (page) => {
  const assets=${JSON.stringify(assets)};
  const font=${JSON.stringify(readFileSync('public/fonts/arabic.ttf').toString('base64'))};
  const records=${JSON.stringify(records)};
- const people=${JSON.stringify(people)}; const sectors=${JSON.stringify(sectors)};
+ const providers=${JSON.stringify(providers)}; const people=${JSON.stringify(people)}; const sectors=${JSON.stringify(sectors)};
  let sequence=0;const randomUUID=()=>String(Date.now())+'-'+(++sequence)+'-'+Math.random().toString(16).slice(2);
  const original=JSON.stringify(records);
  const store={get:(k,id)=>records[k]?.[id]?JSON.parse(JSON.stringify(records[k][id])):null,all:k=>Object.values(records[k]||{}).map(v=>JSON.parse(JSON.stringify(v))),put:(k,id,v)=>{records[k]||={};records[k][id]=JSON.parse(JSON.stringify(v));},del:(k,id)=>{delete records[k]?.[id];},reset:()=>{for(const k of Object.keys(records))delete records[k];Object.assign(records,JSON.parse(original));}};

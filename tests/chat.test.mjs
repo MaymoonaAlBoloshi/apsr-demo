@@ -50,3 +50,21 @@ test('sector context and navigation use the published sector evidence',async()=>
  const answer=await chat({...message,page:'/sectors/electricity'});
  assert.match(prompt,/Current page: \/sectors\/electricity/);assert.match(prompt,/municipalities/);assert.equal(answer.sources[0].path,'/sectors');store.db.close();
 });
+test('provider directory and role-specific workspace links are grounded and scoped',async()=>{
+ const store=openStore(':memory:');try{
+ for(const role of ['public','consumer','provider','officer','manager']){
+ let prompt='';const chat=createChat(store,{env,request:async(_url,options)=>{prompt=JSON.parse(options.body).messages[0].content;return response('Open your workspace. [source:provider] [source:oversight] [source:workspace] [source:complaint]');}});
+ const result=await chat({...message,role,page:role==='provider'?'/provider':'/providers'});
+ assert.match(prompt,/Nama Supply/);assert.match(prompt,/Other provider \/ not sure/);assert.match(prompt,/No password or civil ID/);assert.match(prompt,/one question at a time/);assert.match(prompt,/Chat cannot access these counts/);
+ const ids=result.sources.map(s=>s.id);assert.equal(ids.includes('provider'),role==='provider');assert.equal(ids.includes('oversight'),['officer','manager'].includes(role));assert.equal(ids.includes('workspace'),role==='officer');assert.ok(ids.includes('complaint'));
+ if(role==='provider')assert.match(prompt,/Current page: \/provider/);
+ }
+ }finally{store.db.close();}
+});
+test('retries transient connection failures once without retrying credentials or timeouts',async()=>{
+ const store=openStore(':memory:');try{
+ for(const failure of ['dns',503]){let calls=0;const chat=createChat(store,{env,request:async()=>{calls++;if(calls===1){if(failure==='dns')throw Object.assign(new TypeError('fetch failed'),{cause:{code:'EAI_AGAIN'}});return {ok:false,status:failure};}return response('Connected.');}});assert.equal((await chat(message)).text,'Connected.');assert.equal(calls,2);}
+ for(const status of [401,403,429,500]){let calls=0;const chat=createChat(store,{env,request:async()=>{calls++;return {ok:false,status};}});await assert.rejects(chat(message));assert.equal(calls,1);}
+ let calls=0;const chat=createChat(store,{env,request:async()=>{calls++;throw Object.assign(new TypeError('fetch failed'),{cause:{code:'ECONNRESET'}});}});await assert.rejects(chat(message),e=>e.message==='chat_provider_error');assert.equal(calls,2);
+ }finally{store.db.close();}
+});

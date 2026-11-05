@@ -1,0 +1,5 @@
+import {providers} from './providers';
+export default function ProviderSelect({lang,sector,value,onChange,allowOther=true}:{lang:'ar'|'en';sector:string;value:string;onChange:(value:string)=>void;allowOther?:boolean}){
+ const t=(ar:string,en:string)=>lang==='ar'?ar:en;
+ return <select aria-label={t('مزود الخدمة','Service provider')} required value={value} onChange={e=>onChange(e.target.value)}><option value="">{t('اختر مزود الخدمة','Select a provider')}</option>{['customer','network','producer'].map(kind=><optgroup key={kind} label={kind==='customer'?t('خدمات المشتركين والمناطق الخاصة','Customer and special-zone services'):kind==='network'?t('الشبكات وشراء الطاقة','Networks and procurement'):t('شركات الإنتاج والتحلية','Generation and desalination companies')}>{providers.filter(p=>p.sectors.includes(sector)&&p.kind===kind).map(p=><option key={p.id} value={p.id}>{p.name[lang]}</option>)}</optgroup>)}{allowOther&&<option value="other">{t('مزود آخر / غير متأكد','Other provider / not sure')}</option>}</select>;
+}

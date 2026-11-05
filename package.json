@@ -10,7 +10,7 @@
     "dev": "node server/index.mjs",
     "build": "tsc --noEmit && vite build",
     "start": "NODE_ENV=production node server/index.mjs",
-    "test": "node tests/api.test.mjs && node tests/chat.test.mjs",
+    "test": "node tests/api.test.mjs && node tests/chat.test.mjs && node tests/providers.test.mjs",
     "test:e2e": "node tests/browser.mjs",
     "reset": "node server/reset.mjs",
     "preview:harness": "node tests/create-preview.mjs"

@@ -1,0 +1,488 @@
+[
+  {
+    "id": "nama-supply",
+    "name": {
+      "ar": "نماء للتزويد",
+      "en": "Nama Supply"
+    },
+    "sectors": [
+      "electricity"
+    ],
+    "kind": "customer",
+    "scope": "Billing and customer supply outside Dhofar",
+    "source": "https://apsr.om/pages/electricity-lb",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "nama-distribution",
+    "name": {
+      "ar": "نماء لتوزيع الكهرباء",
+      "en": "Nama Electricity Distribution"
+    },
+    "sectors": [
+      "electricity"
+    ],
+    "kind": "customer",
+    "scope": "Electricity networks outside Dhofar",
+    "source": "https://apsr.om/pages/electricity-lb",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "nama-dhofar",
+    "name": {
+      "ar": "نماء لخدمات ظفار",
+      "en": "Nama Dhofar Services"
+    },
+    "sectors": [
+      "electricity",
+      "water",
+      "sanitation"
+    ],
+    "kind": "customer",
+    "scope": "Electricity, water and wastewater in Dhofar",
+    "source": "https://apsr.om/pdfs/water/NamaDhofar01January2025.pdf",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "nama-water",
+    "name": {
+      "ar": "نماء لخدمات المياه",
+      "en": "Nama Water Services"
+    },
+    "sectors": [
+      "water",
+      "sanitation"
+    ],
+    "kind": "customer",
+    "scope": "Water and wastewater outside Dhofar; check special-zone arrangements",
+    "source": "https://nws.nama.om/About-Us/CEO-Message",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "oqgn",
+    "name": {
+      "ar": "أوكيو لشبكات الغاز",
+      "en": "OQ Gas Networks"
+    },
+    "sectors": [
+      "gas"
+    ],
+    "kind": "network",
+    "scope": "Natural gas transmission, not household LPG cylinders",
+    "source": "https://oqgn.om/annualreport2025/introduction/at_a_glance.html",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "beah",
+    "name": {
+      "ar": "بيئة",
+      "en": "be’ah"
+    },
+    "sectors": [
+      "waste"
+    ],
+    "kind": "customer",
+    "scope": "Waste management and facilities; collection responsibility depends on local arrangements",
+    "source": "https://beah.om/web/guest/our-story",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "marafiq",
+    "name": {
+      "ar": "مرافق",
+      "en": "Marafiq"
+    },
+    "sectors": [
+      "electricity",
+      "water"
+    ],
+    "kind": "customer",
+    "scope": "Utilities in the Special Economic Zone at Duqm",
+    "source": "https://marafiq.om/en-us/About-Marafiq/Profile",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "majis",
+    "name": {
+      "ar": "مجيس للخدمات الصناعية",
+      "en": "Majis Industrial Services"
+    },
+    "sectors": [
+      "water",
+      "sanitation"
+    ],
+    "kind": "customer",
+    "scope": "Industrial water services in Sohar",
+    "source": "https://majis.om/about/",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "oetc",
+    "name": {
+      "ar": "الشركة العُمانية لنقل الكهرباء",
+      "en": "Oman Electricity Transmission Company"
+    },
+    "sectors": [
+      "electricity"
+    ],
+    "kind": "network",
+    "scope": "Transmission network, not household billing",
+    "source": "https://apsr.om/pages/electricity-lb",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "nama-pwp",
+    "name": {
+      "ar": "نماء لشراء الطاقة والمياه",
+      "en": "Nama Power and Water Procurement"
+    },
+    "sectors": [
+      "electricity",
+      "water"
+    ],
+    "kind": "network",
+    "scope": "Bulk procurement, not household billing",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "barka-power-water",
+    "name": {
+      "ar": "بركاء للمياه والطاقة",
+      "en": "Barka Water and Power Company"
+    },
+    "sectors": [
+      "electricity",
+      "water"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "ad-dhahirah",
+    "name": {
+      "ar": "الظاهرة لتوليد الكهرباء",
+      "en": "AD-Dhahirah Generating Company"
+    },
+    "sectors": [
+      "electricity"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "sembcorp-salalah",
+    "name": {
+      "ar": "سيمبكورب صلالة",
+      "en": "Sembcorp Salalah"
+    },
+    "sectors": [
+      "electricity",
+      "water"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "dhofar-generating",
+    "name": {
+      "ar": "ظفار لتوليد الكهرباء",
+      "en": "Dhofar Generating Company"
+    },
+    "sectors": [
+      "electricity"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "qurayyat-desalination",
+    "name": {
+      "ar": "قريات لتحلية المياه",
+      "en": "Qurayyat Desalination"
+    },
+    "sectors": [
+      "water"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "al-asilah",
+    "name": {
+      "ar": "الأصيلة لتحلية المياه",
+      "en": "Al Asilah Desalination Company"
+    },
+    "sectors": [
+      "water"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "sharqiyah-desalination",
+    "name": {
+      "ar": "الشرقية لتحلية المياه",
+      "en": "Sharqiyah Desalination Company"
+    },
+    "sectors": [
+      "water"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "shams-ad-dhahira",
+    "name": {
+      "ar": "شمس الظاهرة لتوليد الكهرباء",
+      "en": "Shams Ad-Dhahira Generating Company"
+    },
+    "sectors": [
+      "electricity"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "smn-barka",
+    "name": {
+      "ar": "إس إم إن بركاء",
+      "en": "SMN Barka"
+    },
+    "sectors": [
+      "electricity",
+      "water"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "barka-desalination",
+    "name": {
+      "ar": "بركاء لتحلية المياه",
+      "en": "Barka Desalination Company"
+    },
+    "sectors": [
+      "water"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "tanweer",
+    "name": {
+      "ar": "كهرباء المناطق الريفية (تنوير)",
+      "en": "Rural Areas Electricity Company (Tanweer)"
+    },
+    "sectors": [
+      "electricity"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "al-suwadi",
+    "name": {
+      "ar": "السوادي للطاقة",
+      "en": "Al Suwadi Power Company"
+    },
+    "sectors": [
+      "electricity"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "muscat-city-desalination",
+    "name": {
+      "ar": "مدينة مسقط لتحلية المياه",
+      "en": "Muscat City Desalination Company"
+    },
+    "sectors": [
+      "water"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "musandam-power",
+    "name": {
+      "ar": "مسندم للطاقة",
+      "en": "Musandam Power Company"
+    },
+    "sectors": [
+      "electricity"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "al-rusail",
+    "name": {
+      "ar": "الرسيل للطاقة",
+      "en": "Al Rusail Power Company"
+    },
+    "sectors": [
+      "electricity"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "sohar-power",
+    "name": {
+      "ar": "صحار للطاقة",
+      "en": "Sohar Power Company"
+    },
+    "sectors": [
+      "electricity",
+      "water"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "dhofar-desalination",
+    "name": {
+      "ar": "ظفار لتحلية المياه",
+      "en": "Dhofar Desalination Company"
+    },
+    "sectors": [
+      "water"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "al-batinah",
+    "name": {
+      "ar": "الباطنة للطاقة",
+      "en": "Al Batinah Power Company"
+    },
+    "sectors": [
+      "electricity"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "shinas",
+    "name": {
+      "ar": "شناص لتوليد الكهرباء",
+      "en": "Shinas Generating Company"
+    },
+    "sectors": [
+      "electricity"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "phoenix",
+    "name": {
+      "ar": "العنقاء للطاقة",
+      "en": "Phoenix Power Company"
+    },
+    "sectors": [
+      "electricity"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "gs-inima-barka",
+    "name": {
+      "ar": "جي إس إنيما بركاء 5 لتحلية المياه",
+      "en": "GS Inima Barka 5 Desalination Company"
+    },
+    "sectors": [
+      "water"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "wadi-noor",
+    "name": {
+      "ar": "وادي نور للطاقة الشمسية",
+      "en": "Wadi Noor Solar Power Company"
+    },
+    "sectors": [
+      "electricity"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "sembcorp-jinko",
+    "name": {
+      "ar": "سيمبكورب جينكو شاين",
+      "en": "Sembcorp Jinko Shine"
+    },
+    "sectors": [
+      "electricity"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  },
+  {
+    "id": "manah-power",
+    "name": {
+      "ar": "منح للطاقة",
+      "en": "Manah Power Company"
+    },
+    "sectors": [
+      "electricity"
+    ],
+    "kind": "producer",
+    "scope": "Generation or desalination project company, not the usual household billing provider",
+    "source": "https://omanpwp.om/contracts",
+    "verified": "2026-11-05"
+  }
+]

@@ -1,8 +1,8 @@
 import {officialServices} from './officialServices';
 export type Localized={ar:string;en:string};
-export type Actor={id:string;role:string;ar:string;en:string};
+export type Actor={id:string;role:string;ar:string;en:string;providerId?:string};
 export type Event={id:string;type:string;actor:string;at:string;text:Localized;internal?:boolean;caseId?:string};
-export type Complaint={id:string;userId:string;sector:string;provider:string;account?:string;subject:string|Localized;description:string;status:string;owner:string|null;createdAt:string;updatedAt:string;dueAt:string;resolvedAt:string|null;documents:{id:string;name:string;size:number;at:string}[];messages:{id:string;actor:string;at:string;text:string;internal:boolean}[];events:Event[];rating:number|null};
+export type Complaint={id:string;userId:string;sector:string;provider:string;providerId?:string|null;category?:string;finding?:string;demo?:boolean;account?:string;subject:string|Localized;description:string;status:string;owner:string|null;createdAt:string;updatedAt:string;dueAt:string;resolvedAt:string|null;documents:{id:string;name:string;size:number;at:string}[];messages:{id:string;actor:string;at:string;text:string;internal:boolean}[];events:Event[];rating:number|null};
 export type Content={title:Localized;published:Localized;draft?:Localized;status?:string;version:number;history?:{version:number;actor:string;at:string}[]};
 export type Settings={owner:string;requiredDocument:boolean;requirements:Localized;targetDays:number};
 export type Upload={name:string;type:string;data:string};

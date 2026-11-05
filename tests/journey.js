@@ -1,19 +1,19 @@
 async (page) => {
  const results=[];
  const check=async(name,fn)=>{await fn();results.push(name);};
- const role=async(label)=>{await page.getByRole('button',{name:'Account and workspace',exact:true}).click();await page.getByRole('button',{name:label,exact:true}).click();};
+ const role=async(label)=>{await page.getByRole('button',{name:'Account and workspace',exact:true}).click();await page.locator('.signin-roles button').nth(/Consumer/.test(label)?0:2).click();await page.getByLabel('Demo account',{exact:true}).selectOption({label});await page.getByRole('button',{name:'Sign in to workspace',exact:true}).click();};
  const shot=async(name)=>{await page.locator('.toast').waitFor({state:'hidden',timeout:6000});return page.screenshot({path:'/home/maymona/Documents/apsr/evidence/'+name+'.png',fullPage:true});};
  const overflow=async()=>{if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw new Error('Horizontal page overflow');};
  await check('Arabic homepage and guide',async()=>{
  await page.getByRole('heading',{name:'حقوقك محفوظة، وخدماتك أقرب.'}).waitFor();await overflow();await shot('home-ar');
- await page.getByRole('button',{name:'مساعد الخدمات',exact:true}).click();await page.getByRole('button',{name:'كيف أقدم شكوى على فاتورتي؟'}).click();await page.getByRole('button',{name:/إرشادات الشكوى المنشورة/}).waitFor();
+ await page.getByRole('button',{name:'مساعد الخدمات',exact:true}).click();await page.getByRole('button',{name:'اسأل المساعد',exact:true}).click();await page.getByRole('button',{name:'كيف أقدم شكوى على فاتورتي؟'}).click();await page.getByRole('button',{name:/إرشادات الشكوى المنشورة/}).waitFor();
  await page.getByRole('dialog',{name:'مساعد الخدمات'}).getByRole('button',{name:'إغلاق',exact:true}).click();
  });
  await page.getByRole('button',{name:'English',exact:true}).click();
  await check('English homepage and narrow layout',async()=>{await page.getByRole('heading',{name:'Your rights matter. Your services, connected.'}).waitFor();await shot('home-en');await page.setViewportSize({width:390,height:844});await overflow();await shot('home-phone');await page.setViewportSize({width:1440,height:1080});});
  await role('Maryam · Consumer');
  await page.getByRole('button',{name:'New complaint',exact:true}).click();
- await page.getByLabel('Service provider',{exact:true}).fill('Demo Electricity Provider');
+ await page.getByLabel('Service provider',{exact:true}).selectOption('nama-supply');
  await page.getByLabel('Account or reference',{exact:true}).fill('DEMO-10482');
  await page.getByLabel('Complaint subject',{exact:true}).fill('Unexpected electricity bill increase');
  await page.getByLabel('Issue details',{exact:true}).fill('My October electricity bill increased from OMR 24 to OMR 87. Please review the meter reading and the billed amount.');

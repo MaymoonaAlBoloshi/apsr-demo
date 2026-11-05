@@ -11,3 +11,23 @@
 @media(prefers-reduced-motion:reduce){.home-page *, .home-page *:before,.home-page *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.intro,.reveal-ready{opacity:1!important;transform:none!important}.sculpture-facets{transform:none}.sculpture-shadow{opacity:.14}.art-point,.connection-line i{opacity:1}}
 .sector-entry>div.sector-disclosure{display:grid;grid-template-rows:0fr;padding:0;animation:none;opacity:0;transition:grid-template-rows .48s cubic-bezier(.22,1,.36,1),opacity .3s ease}.sector-entry.is-open>div.sector-disclosure{grid-template-rows:1fr;opacity:1}.sector-disclosure-inner{overflow:hidden;min-height:0;padding-inline-start:57px}.sector-disclosure-inner .text-button{margin-bottom:25px}.sector-entry>button{transition:color .25s ease}.sector-entry-icon{transition:transform .4s ease,color .3s ease}.sector-entry.is-open .sector-entry-icon{transform:scale(1.12)}@media(max-width:760px){.sector-disclosure-inner{padding-inline-start:50px}}@media(prefers-reduced-motion:reduce){.sector-entry>div.sector-disclosure,.sector-entry>button,.sector-entry-icon{transition:none}}
 .sculpture-rotation{transform-origin:300px 290px;transform:rotate(var(--triangle-turn,0deg))}@media(prefers-reduced-motion:reduce){.sculpture-rotation{transform:none}}
+/* A dark sector chapter, retaining the simple accordion rows. */
+.home-page .sector-section{width:100%;max-width:none;margin:0;padding:76px max(5vw,calc((100vw - 1280px)/2));grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:80px;background:#073f58;border:0;align-items:center}
+.home-page .sector-intro .section-index{color:#9ccddd}
+.home-page .sector-intro .chapter-title{font-size:clamp(36px,4vw,54px);line-height:1.55;margin:18px 0}
+.home-page .sector-intro .chapter-title .chapter-line{color:#fff}
+.home-page .sector-intro .chapter-title .chapter-line+.chapter-line{color:#9eddea}
+.home-page .sector-accordion{padding:0}
+.home-page .sector-entry{border-bottom:1px solid #ffffff28}
+.home-page .sector-entry.is-open{background:transparent}
+.home-page .sector-entry>button{padding:23px 0;gap:19px;color:#d8e9f1}
+.home-page .sector-entry>button strong{font-size:20px;font-weight:500}
+.home-page .sector-entry-index{color:#8bb5c7}
+.home-page .sector-entry-icon{color:#a3cfdf}
+.home-page .sector-entry.is-open>button{color:#fff}
+.home-page .sector-entry.is-open .sector-entry-icon{color:#8bdef0}
+.home-page .sector-disclosure-inner p{font-size:14px;line-height:1.9;color:#c5dce7}
+.home-page .sector-entry>div .text-button{font-size:13px;color:#9fe3f1}
+.home-page .sector-entry>button:hover{color:#9fe3f1}
+.home-page .sector-entry button:focus-visible{outline-color:#96e0ef}
+@media(max-width:760px){.home-page .sector-section{grid-template-columns:1fr;gap:24px;padding:42px 24px}.home-page .sector-intro .chapter-title{font-size:36px;margin:12px 0}.home-page .sector-entry>button{padding-block:21px}.home-page .sector-entry>button strong{font-size:18px}}
